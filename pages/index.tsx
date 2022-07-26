@@ -1,6 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 
+import Home from "../components/home";
+
 const Root: NextPage = (): JSX.Element => {
   return (
     <>
@@ -11,6 +13,7 @@ const Root: NextPage = (): JSX.Element => {
           content="The only secure messenger all over the internet."
         />
       </Head>
+      <Home />
     </>
   );
 };
