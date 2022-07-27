@@ -1,4 +1,5 @@
-html, body{
+html, body, #__next{
+  min-height: 100vh;
   padding: 0;
   margin: 0;
   box-sizing: border-box;

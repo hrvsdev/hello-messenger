@@ -1,4 +1,10 @@
-.main{
-    width: 100vw;
-    min-height: 100vh;
+.main {
+  min-height: 100vh;
+  display: flex;
+  background-color: #ECFEFF;
+
+  .login-wrapper{
+    background-color: white;
+  }
+  
 }
