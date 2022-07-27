@@ -1,6 +1,9 @@
-import "./Login.module.scss"
-import Button from "@nextui-org/react/button";
+import styles from "./Login.module.scss";
 
 export default function Login() {
-  return <Button>Login</Button>;
+  return <main className={styles.main}>
+    <div className="login-box-wrapper">
+      
+    </div>
+  </main>;
 }
