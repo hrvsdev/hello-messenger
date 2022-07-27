@@ -7,7 +7,7 @@ export default function Login() {
         <LogoWrapper>
           <H1>Hello</H1>
         </LogoWrapper>
-        <Tagline>A secure way to say Hello</Tagline>
+        <Tagline>A secure and better way to say Hello</Tagline>
         <GoogleWrapper>
           <Icon></Icon>
           <Text>Sign in with Google</Text>
@@ -28,18 +28,26 @@ export default function Login() {
 }
 
 const Main = styled.main`
+  background-color: #d6f9fb;
   display: flex;
-  background-color: #ecfeff;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
 `;
 
 const LoginWrapper = styled.div`
   background-color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
 `;
 
 const LogoWrapper = styled.div``;
 
-const H1 = styled.h1``;
+const H1 = styled.h1`
+  text-align: center;
+  font-size: 80px;
+  line-height: 60px
+`;
 
 const Tagline = styled.p``;
 
