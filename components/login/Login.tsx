@@ -7,7 +7,7 @@ export default function Login() {
         <LogoWrapper>
           <H1>Hello</H1>
         </LogoWrapper>
-        <Tagline>A secure and better way to say Hello</Tagline>
+        <Tagline>A secure and better way to Hello</Tagline>
         <LoginText>Sign in</LoginText>
         <GuestWrapper>
           <Icon></Icon>
@@ -19,7 +19,7 @@ export default function Login() {
         </GoogleWrapper>
         <Or>or use</Or>
         <EmailWrapper>
-          <Input type="text" placeholder="Enter email" />
+          <Input type="email" placeholder="Enter email" />
           <InputIcon></InputIcon>
           <InputError>Invalid email</InputError>
           <Next>Next</Next>
@@ -67,6 +67,7 @@ const H1 = styled.h1`
 
 const Tagline = styled.p`
   font-weight: 500;
+  text-align: center;
   font-size: 18px;
   color: rgb(51, 65, 85);
   margin-bottom: 30px;
@@ -90,7 +91,7 @@ const GuestWrapper = styled.button`
   outline: 0;
   border: 0;
   margin-bottom: 15px;
-  transition: all 200ms;
+  transition: filter 200ms;
   cursor: pointer;
 
   &:hover {
@@ -159,9 +160,8 @@ const Next = styled.button`
   outline: 0;
   border: 0;
   margin-bottom: 15px;
-  transition: 250ms ease;
-  will-change: background width height;
-  backface-visibility: hidden;
+  transition: background 200ms;
+  will-change: background;
   cursor: pointer;
 
   &:hover {
@@ -169,8 +169,6 @@ const Next = styled.button`
   }
 
   &:active {
-    /* transform: scale(0.98); */
-    /* height: 98%; */
-    width: 98%;
+    background: #c5d4ff;
   }
 `;
