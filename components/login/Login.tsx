@@ -1,38 +1,63 @@
-import styles from "./Login.module.scss";
 import styled from "styled-components";
 
 export default function Login() {
   return (
     <Main>
-      <div className="login-wrapper">
-        <div className="logo-wrapper">
-          <h1>Hello</h1>
-        </div>
-        <div className="tagline-wrapper">A secure way to say Hello</div>
-        <div className="google-wrapper">
-          <div className="icon-wrapper"></div>
-          <span className="text">Sign in with Google</span>
-        </div>
-        <div className="guest-wrapper">
-          <div className="icon-wrapper"></div>
-          <span className="text">Sign in as Guest</span>
-        </div>
-        <div className="or-divider"></div>
-        <div className="email-wrapper">
-          <input type="text" placeholder="Enter email" />
-          <div className="icon-wrapper"></div>
-          <div className="error">Invalid email</div>
-        </div>
-      </div>
+      <LoginWrapper>
+        <LogoWrapper>
+          <H1>Hello</H1>
+        </LogoWrapper>
+        <Tagline>A secure way to say Hello</Tagline>
+        <GoogleWrapper>
+          <Icon></Icon>
+          <Text>Sign in with Google</Text>
+        </GoogleWrapper>
+        <GuestWrapper>
+          <Icon ></Icon>
+          <Text>Sign in as Guest</Text>
+        </GuestWrapper>
+        <OrDivider></OrDivider>
+        <EmailWrapper>
+          <Input type="text" placeholder="Enter email" />
+          <InputIcon></InputIcon>
+          <InputError >Invalid email</InputError>
+        </EmailWrapper>
+      </LoginWrapper>
     </Main>
   );
 }
 
+
 const Main = styled.main`
   display: flex;
   background-color: #ecfeff;
+  min-height: 100vh;
+`
 
-  .login-wrapper {
-    background-color: white;
-  }
-`;
+const LoginWrapper = styled.div`
+  background-color: white;
+`
+
+const LogoWrapper = styled.div``
+
+const H1 = styled.h1``
+
+const Tagline = styled.p``
+
+const GoogleWrapper = styled.div``
+
+const Icon = styled.div``
+
+const Text = styled.text``
+
+const GuestWrapper = styled.text``
+
+const OrDivider = styled.div``
+
+const EmailWrapper = styled.div``
+
+const Input = styled.input``
+
+const InputIcon = styled.div``
+
+const InputError = styled.div``
