@@ -1,8 +1,9 @@
 import styles from "./Login.module.scss";
+import styled from "styled-components";
 
 export default function Login() {
   return (
-    <main className={styles.main}>
+    <Main>
       <div className="login-wrapper">
         <div className="logo-wrapper">
           <h1>Hello</h1>
@@ -23,6 +24,15 @@ export default function Login() {
           <div className="error">Invalid email</div>
         </div>
       </div>
-    </main>
+    </Main>
   );
 }
+
+const Main = styled.main`
+  display: flex;
+  background-color: #ecfeff;
+
+  .login-wrapper {
+    background-color: white;
+  }
+`;
