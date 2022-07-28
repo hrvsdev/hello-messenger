@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {FcGoogle} from "react-icons/fc"
+import { FaUser } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { HiOutlineMail } from "react-icons/hi";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");
@@ -18,11 +20,11 @@ export default function Login() {
         <Tagline>A secure and better way to Hello</Tagline>
         <LoginText>Sign in</LoginText>
         <GuestWrapper>
-          <Icon></Icon>
+          <FaUser />
           <Text>Continue as Guest</Text>
         </GuestWrapper>
         <GoogleWrapper>
-          <Icon></Icon>
+          <FcGoogle />
           <Text>Continue with Google</Text>
         </GoogleWrapper>
         <Or>or use</Or>
@@ -93,6 +95,9 @@ const LoginText = styled.h3`
 `;
 
 const GuestWrapper = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   background: #574dfc;
   color: white;
@@ -113,9 +118,18 @@ const GuestWrapper = styled.button`
   &:active {
     filter: brightness(0.95);
   }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
 `;
 
 const GoogleWrapper = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   background: transparent;
   border-radius: 10px;
@@ -127,6 +141,12 @@ const GoogleWrapper = styled.button`
   border: 1px solid #ccc;
   cursor: pointer;
   margin-bottom: 20px;
+
+  svg {
+    width: 26px;
+    height: 26px;
+    margin-right: 9px;
+  }
 `;
 
 const Icon = styled.div``;

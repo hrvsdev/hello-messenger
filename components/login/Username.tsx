@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { BiUser, BiAt } from "react-icons/bi";
-import { FaUser } from "react-icons/fa";
 
 export default function Login() {
   return (
