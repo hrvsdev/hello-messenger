@@ -93,7 +93,7 @@ const InputWrapper = styled.div`
   svg {
     color: #6366F1;
     position: absolute;
-    left: 10px;
+    left: 12px;
     width: 20px;
     height: 20px;
   }
@@ -115,7 +115,7 @@ const Input = styled.input`
   border: 1px solid #ccc;
   font-weight: 500;
   border-radius: 10px;
-  padding: 0 36px;
+  padding: 0 38px;
 `;
 
 const Next = styled.button`

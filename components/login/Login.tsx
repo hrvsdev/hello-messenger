@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { FaUser } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { HiOutlineMail } from "react-icons/hi";
+import { BiEnvelope } from "react-icons/bi";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");
@@ -27,14 +27,20 @@ export default function Login() {
           <FcGoogle />
           <Text>Continue with Google</Text>
         </GoogleWrapper>
-        <Or>or use</Or>
+        <Or>
+          <div className="line"></div>
+          <div className="or">or</div>
+          <div className="line"></div>
+        </Or>
         <EmailWrapper>
-          <Input
-            type="email"
-            placeholder="Enter email"
-            onChange={onEmailInput}
-          />
-          <InputIcon></InputIcon>
+          <InputWrapper>
+            <BiEnvelope />
+            <Input
+              type="email"
+              placeholder="Enter email"
+              onChange={onEmailInput}
+            />
+          </InputWrapper>
           <Error>Invalid email</Error>
           <Next>Next</Next>
         </EmailWrapper>
@@ -120,8 +126,8 @@ const GuestWrapper = styled.button`
   }
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
     margin-right: 10px;
   }
 `;
@@ -143,25 +149,50 @@ const GoogleWrapper = styled.button`
   margin-bottom: 20px;
 
   svg {
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
     margin-right: 9px;
   }
 `;
 
-const Icon = styled.div``;
-
-const Text = styled.text``;
+const Text = styled.p``;
 
 const Or = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 30px 1fr;
+  align-items: center;
   font-size: 15px;
-  text-align: center;
   margin-bottom: 20px;
-  color: #7a7a7a;
+
+  .line {
+    border-top: 1px solid #e7e7e7;
+  }
+
+  .or {
+    display: flex;
+    justify-content: center;
+    color: #585858;
+  }
 `;
 
 const EmailWrapper = styled.form`
   width: 100%;
+`;
+
+const InputWrapper = styled.div`
+  width: 100%;
+  position: relative;
+  align-items: center;
+  display: flex;
+  margin-bottom: 20px;
+
+  svg {
+    color: #6366f1;
+    position: absolute;
+    left: 12px;
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const Input = styled.input`
@@ -172,11 +203,8 @@ const Input = styled.input`
   border: 1px solid #ccc;
   font-weight: 500;
   border-radius: 10px;
-  padding: 0 12px;
-  margin-bottom: 20px;
+  padding: 0 38px;
 `;
-
-const InputIcon = styled.div``;
 
 const Error = styled.div`
   display: none;
