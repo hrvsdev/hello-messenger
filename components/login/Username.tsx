@@ -1,14 +1,8 @@
-import React, { useState } from "react";
 import styled from "styled-components";
-import {FcGoogle} from "react-icons/fc"
+import { BiUser, BiAt } from "react-icons/bi";
+import { FaUser } from "react-icons/fa";
 
 export default function Login() {
-  const [email, setEmail] = useState<string>("");
-
-  const onEmailInput = (e: React.FormEvent<HTMLInputElement>) => {
-    setEmail(e.currentTarget.value);
-  };
-
   return (
     <Main>
       <LoginWrapper>
@@ -16,26 +10,20 @@ export default function Login() {
           <H1>Hello</H1>
         </LogoWrapper>
         <Tagline>A secure and better way to Hello</Tagline>
-        <LoginText>Sign in</LoginText>
-        <GuestWrapper>
-          <Icon></Icon>
-          <Text>Continue as Guest</Text>
-        </GuestWrapper>
-        <GoogleWrapper>
-          <Icon></Icon>
-          <Text>Continue with Google</Text>
-        </GoogleWrapper>
-        <Or>or use</Or>
-        <EmailWrapper>
-          <Input
-            type="email"
-            placeholder="Enter email"
-            onChange={onEmailInput}
-          />
-          <InputIcon></InputIcon>
-          <Error>Invalid email</Error>
-          <Next>Next</Next>
-        </EmailWrapper>
+        <LoginText>About yourself</LoginText>
+        <FormWrapper>
+          <Label htmlFor="name">Name</Label>
+          <InputWrapper>
+            <BiUser />
+            <Input id="name" type="text" placeholder="Enter your name" />
+          </InputWrapper>
+          <Label htmlFor="username">Username</Label>
+          <InputWrapper>
+            <Input id="username" type="email" placeholder="Enter a username" />
+            <BiAt />
+          </InputWrapper>
+          <Next>Confirm</Next>
+        </FormWrapper>
       </LoginWrapper>
     </Main>
   );
@@ -92,56 +80,32 @@ const LoginText = styled.h3`
   text-align: center;
 `;
 
-const GuestWrapper = styled.button`
+const FormWrapper = styled.form`
   width: 100%;
-  background: #574dfc;
-  color: white;
-  border-radius: 10px;
-  height: 46px;
-  font-size: 16px;
-  font-weight: 500;
-  outline: 0;
-  border: 0;
-  margin-bottom: 15px;
-  transition: filter 200ms;
-  cursor: pointer;
+`;
 
-  &:hover {
-    filter: brightness(1.1);
-  }
+const InputWrapper = styled.div`
+  width: 100%;
+  position: relative;
+  align-items: center;
+  display: flex;
+  margin-bottom: 20px;
 
-  &:active {
-    filter: brightness(0.95);
+  svg {
+    color: #6366F1;
+    position: absolute;
+    left: 10px;
+    width: 20px;
+    height: 20px;
   }
 `;
 
-const GoogleWrapper = styled.button`
-  width: 100%;
-  background: transparent;
-  border-radius: 10px;
-  height: 46px;
-  font-size: 16px;
+const Label = styled.label`
   font-weight: 500;
-  outline: 0;
-  border: 0;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  margin-bottom: 20px;
-`;
-
-const Icon = styled.div``;
-
-const Text = styled.text``;
-
-const Or = styled.div`
-  font-size: 15px;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #7a7a7a;
-`;
-
-const EmailWrapper = styled.form`
-  width: 100%;
+  display: block;
+  margin-bottom: 4px;
+  color: #525252;
+  padding-left: 5px;
 `;
 
 const Input = styled.input`
@@ -152,19 +116,7 @@ const Input = styled.input`
   border: 1px solid #ccc;
   font-weight: 500;
   border-radius: 10px;
-  padding: 0 12px;
-  margin-bottom: 20px;
-`;
-
-const InputIcon = styled.div``;
-
-const Error = styled.div`
-  display: none;
-  color: #f43f5e;
-  font-size: 13px;
-  font-weight: 500;
-  margin-bottom: 8px;
-  padding-left: 4px;
+  padding: 0 36px;
 `;
 
 const Next = styled.button`
