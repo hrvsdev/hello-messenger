@@ -7,14 +7,14 @@ import { FiCheck, FiX } from "react-icons/fi";
 import { UsernameCheckType } from "./types";
 
 export default function Login() {
+  // Input states
+  const [name, setName] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+
   // Error states
   const [nameError, setNameError] = useState<boolean>(false);
   const [usernameCheckShow, setUsernameCheckShow] = useState<boolean>(false);
   const [usernameError, setuserNameError] = useState<boolean>(false);
-
-  // Input states
-  const [name, setName] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
 
   // On form submit
   const onFormSubmit = (e: React.FormEvent) => {
@@ -57,13 +57,11 @@ export default function Login() {
             <BiAt />
           </InputWrapper>
           <UsernameCheck show={usernameCheckShow} error={usernameError}>
-            <div className="username-check">
-              <div className="top">
-                {usernameError ? <FiX /> : <FiCheck />}
-                <p>
-                  This username is {usernameError ? "unavailable" : "available"}
-                </p>
-              </div>
+            <div className="top">
+              {usernameError ? <FiX /> : <FiCheck />}
+              <p>
+                This username is {usernameError ? "unavailable" : "available"}
+              </p>
             </div>
           </UsernameCheck>
           <Next>Confirm</Next>
@@ -171,6 +169,10 @@ const Input = styled.input<{ error: boolean }>`
   font-weight: 500;
   border-radius: 10px;
   padding: 0 38px;
+
+  &:focus {
+    border: 1px solid #6366f1;
+  }
 `;
 
 const InputError = styled.p<{ show: boolean }>`
@@ -184,12 +186,9 @@ const InputError = styled.p<{ show: boolean }>`
 
 const UsernameCheck = styled.div<UsernameCheckType>`
   margin-top: 2px;
-  margin-bottom: 25px;
+  margin-bottom: 13px;
   padding-left: 4px;
-
-  .username-check {
-    display: ${({ show }) => (show ? "block" : "none")};
-  }
+  visibility: ${({ show }) => (show ? "visible" : "hidden")};
 
   .top {
     display: flex;

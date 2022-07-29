@@ -6,7 +6,11 @@ import { FcGoogle } from "react-icons/fc";
 import { BiEnvelope } from "react-icons/bi";
 
 export default function Login() {
+  // Input state
   const [email, setEmail] = useState<string>("");
+
+  // Input error state
+  const [emailError, setEmailError] = useState<boolean>(false);
 
   const onEmailInput = (e: React.FormEvent<HTMLInputElement>) => {
     setEmail(e.currentTarget.value);
@@ -37,12 +41,13 @@ export default function Login() {
           <InputWrapper>
             <BiEnvelope />
             <Input
+            error={emailError}
               type="email"
               placeholder="Enter email"
               onChange={onEmailInput}
             />
           </InputWrapper>
-          <Error>Invalid email</Error>
+          <Error show={emailError}>Invalid email</Error>
           <Next>Next</Next>
         </EmailWrapper>
       </LoginWrapper>
@@ -196,7 +201,7 @@ const InputWrapper = styled.div`
   position: relative;
   align-items: center;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 3px;
 
   svg {
     color: #6366f1;
@@ -207,24 +212,28 @@ const InputWrapper = styled.div`
   }
 `;
 
-const Input = styled.input`
+const Input = styled.input<{ error: boolean }>`
   all: unset;
   box-sizing: border-box;
   width: 100%;
   height: 46px;
-  border: 1px solid #ccc;
+  border: 1px solid ${({ error }) => (error ? "#EF4444" : "#ccc")};
   font-weight: 500;
   border-radius: 10px;
   padding: 0 38px;
+
+  &:focus {
+    border: 1px solid #6366f1;
+  }
 `;
 
-const Error = styled.div`
-  display: none;
-  color: #f43f5e;
-  font-size: 13px;
-  font-weight: 500;
-  margin-bottom: 8px;
+const Error = styled.p<{ show: boolean }>`
+  color: #dc2626;
+  margin-top: 3px;
+  margin-bottom: 16px;
   padding-left: 4px;
+  font-size: 13px;
+  visibility: ${({ show }) => (show ? "visible" : "hidden")};
 `;
 
 const Next = styled.button`
