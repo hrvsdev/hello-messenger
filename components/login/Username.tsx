@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { BiUser, BiAt } from "react-icons/bi";
-import { FiCheck } from "react-icons/fi";
+import { FiCheck, FiX } from "react-icons/fi";
+
+import { UsernameCheckType } from "./types";
 
 export default function Login() {
   return (
@@ -10,7 +12,7 @@ export default function Login() {
           <H1>Hello</H1>
         </LogoWrapper>
         <Tagline>A secure and better way to Hello</Tagline>
-        <LoginText>About yourself</LoginText>
+        <LoginText>Add your information</LoginText>
         <FormWrapper>
           <Label htmlFor="name">Name</Label>
           <InputWrapper>
@@ -35,7 +37,7 @@ export default function Login() {
             />
             <BiAt />
           </InputWrapper>
-          <UsernameCheck>
+          <UsernameCheck show={true} status="success">
             <div className="top">
               <FiCheck />
               <p>This username is available</p>
@@ -157,14 +159,16 @@ const InputError = styled.p<{ show: boolean }>`
   visibility: ${({ show }) => (show ? "visible" : "hidden")};
 `;
 
-const UsernameCheck = styled.div`
+const UsernameCheck = styled.div<UsernameCheckType>`
+  margin-top: 2px;
+  margin-bottom: 20px;
   padding-left: 4px;
 
   .top {
     display: flex;
     column-gap: 5px;
     align-items: center;
-    color: #16a34a;
+    color: ${({ status }) => (status === "success" ? "#dc2626" : "#16A34A")};
 
     svg {
       width: 20px;
