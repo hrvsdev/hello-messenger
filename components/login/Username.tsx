@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BiUser, BiAt } from "react-icons/bi";
+import { FiCheck } from "react-icons/fi";
 
 export default function Login() {
   return (
@@ -21,17 +22,26 @@ export default function Login() {
               placeholder="Enter your name"
             />
           </InputWrapper>
+          <InputError show={false}>
+            Name should be of atleast 3 characters
+          </InputError>
           <Label htmlFor="username">Username</Label>
           <InputWrapper>
             <Input
               error={false}
               id="username"
-              type="email"
+              type="text"
               placeholder="Enter a username"
             />
             <BiAt />
           </InputWrapper>
-          <Next data-err>Confirm</Next>
+          <UsernameCheck>
+            <div className="top">
+              <FiCheck />
+              <p>This username is available</p>
+            </div>
+          </UsernameCheck>
+          <Next>Confirm</Next>
         </FormWrapper>
       </LoginWrapper>
     </Main>
@@ -109,7 +119,6 @@ const InputWrapper = styled.div`
   position: relative;
   align-items: center;
   display: flex;
-  margin-bottom: 20px;
 
   svg {
     color: #6366f1;
@@ -137,6 +146,35 @@ const Input = styled.input<{ error: boolean }>`
   font-weight: 500;
   border-radius: 10px;
   padding: 0 38px;
+`;
+
+const InputError = styled.p<{ show: boolean }>`
+  color: #dc2626;
+  margin-top: 3px;
+  margin-bottom: 8px;
+  padding-left: 4px;
+  font-size: 13px;
+  visibility: ${({ show }) => (show ? "visible" : "hidden")};
+`;
+
+const UsernameCheck = styled.div`
+  padding-left: 4px;
+
+  .top {
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+    color: #16a34a;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    p {
+      font-size: 13px;
+    }
+  }
 `;
 
 const Next = styled.button`
