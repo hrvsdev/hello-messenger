@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import styled from "styled-components";
+import Link from "next/link";
 
 import { BiEnvelope } from "react-icons/bi";
 
@@ -11,8 +11,17 @@ export default function EmailSent() {
           <H1>Hello</H1>
         </LogoWrapper>
         <Tagline>A secure and better way to Hello</Tagline>
-        <LoginText>Sign in</LoginText>
-        <InfoText></InfoText>
+        <LoginText>Verify your email</LoginText>
+        <InfoText>Please check the email sent to</InfoText>
+        <EmailWrapper>
+          <div className="email">
+            <BiEnvelope />
+            <p>username@email.com</p>
+          </div>
+        </EmailWrapper>
+        <WrongEmailWrapper>
+          Wrong email? <Link href="/login">Edit</Link>
+        </WrongEmailWrapper>
       </LoginWrapper>
     </Main>
   );
@@ -80,7 +89,44 @@ const LoginText = styled.h3`
   text-align: center;
 `;
 
-
 const InfoText = styled.p`
-    
-`
+  text-align: center;
+  margin-bottom: 6px;
+`;
+
+const EmailWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+
+  .email {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+    padding: 1px 4px;
+    background: #e0e7ff;
+    color: #4f46e5;
+    border-radius: 6px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 15px;
+    }
+  }
+`;
+
+const WrongEmailWrapper = styled.div`
+  text-align: center;
+  font-size: 15px;
+  a {
+      font-weight: 500;
+    color: #4f46e5;
+    text-decoration: none
+  }
+`;
