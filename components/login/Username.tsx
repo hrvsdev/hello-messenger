@@ -14,11 +14,21 @@ export default function Login() {
           <Label htmlFor="name">Name</Label>
           <InputWrapper>
             <BiUser />
-            <Input id="name" type="text" placeholder="Enter your name" />
+            <Input
+              error={false}
+              id="name"
+              type="text"
+              placeholder="Enter your name"
+            />
           </InputWrapper>
           <Label htmlFor="username">Username</Label>
           <InputWrapper>
-            <Input id="username" type="email" placeholder="Enter a username" />
+            <Input
+              error={false}
+              id="username"
+              type="email"
+              placeholder="Enter a username"
+            />
             <BiAt />
           </InputWrapper>
           <Next data-err>Confirm</Next>
@@ -118,12 +128,12 @@ const Label = styled.label`
   padding-left: 5px;
 `;
 
-const Input = styled.input`
+const Input = styled.input<{ error: boolean }>`
   all: unset;
   box-sizing: border-box;
   width: 100%;
   height: 46px;
-  border: 1px solid #ccc;
+  border: 1px solid ${({ error }) => (error ? "#EF4444" : "#ccc")};
   font-weight: 500;
   border-radius: 10px;
   padding: 0 38px;
@@ -144,19 +154,19 @@ const Next = styled.button`
   will-change: background;
   cursor: pointer;
 
-  :hover {
+  &:hover {
     background: #d4defe;
   }
 
-  :active {
+  &:active {
     background: #c5d4ff;
   }
 
-  :disabled {
+  &:disabled {
     cursor: not-allowed;
     opacity: 0.7;
 
-    :hover {
+    &:hover {
       background: #e0e7ff;
     }
   }

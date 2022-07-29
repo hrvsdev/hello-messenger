@@ -241,11 +241,11 @@ const Next = styled.button`
   will-change: background;
   cursor: pointer;
 
-  :hover {
+  &:hover {
     background: #d4defe;
   }
 
-  :active {
+  &:active {
     background: #c5d4ff;
   }
 `;
