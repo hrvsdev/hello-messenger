@@ -55,13 +55,24 @@ const Main = styled.main`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+
+  @media only screen and (max-width: 500px) {
+    align-items: flex-start;
+    background: white;
+  }
 `;
 
 const LoginWrapper = styled.div`
   box-shadow: #63636333 0 2px 8px;
+  width: 380px;
   padding: 3rem;
   border-radius: 20px;
   background: white;
+
+  @media only screen and (max-width: 500px) {
+    padding: 100px 2rem 0;
+    box-shadow: none;
+  }
 `;
 
 const LogoWrapper = styled.div``;
@@ -230,11 +241,11 @@ const Next = styled.button`
   will-change: background;
   cursor: pointer;
 
-  &:hover {
+  :hover {
     background: #d4defe;
   }
 
-  &:active {
+  :active {
     background: #c5d4ff;
   }
 `;

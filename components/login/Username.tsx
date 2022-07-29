@@ -21,7 +21,7 @@ export default function Login() {
             <Input id="username" type="email" placeholder="Enter a username" />
             <BiAt />
           </InputWrapper>
-          <Next>Confirm</Next>
+          <Next data-err>Confirm</Next>
         </FormWrapper>
       </LoginWrapper>
     </Main>
@@ -29,18 +29,29 @@ export default function Login() {
 }
 
 const Main = styled.main`
-  background-color: #eef2ff;
+  background: #eef2ff;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+
+  @media only screen and (max-width: 500px) {
+    align-items: flex-start;
+    background: white;
+  }
 `;
 
 const LoginWrapper = styled.div`
   box-shadow: #63636333 0 2px 8px;
+  width: 380px;
   padding: 3rem;
   border-radius: 20px;
   background: white;
+
+  @media only screen and (max-width: 500px) {
+    padding: 100px 2rem 0;
+    box-shadow: none;
+  }
 `;
 
 const LogoWrapper = styled.div``;
@@ -91,7 +102,7 @@ const InputWrapper = styled.div`
   margin-bottom: 20px;
 
   svg {
-    color: #6366F1;
+    color: #6366f1;
     position: absolute;
     left: 12px;
     width: 20px;
@@ -133,11 +144,20 @@ const Next = styled.button`
   will-change: background;
   cursor: pointer;
 
-  &:hover {
+  :hover {
     background: #d4defe;
   }
 
-  &:active {
+  :active {
     background: #c5d4ff;
+  }
+
+  :disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+
+    :hover {
+      background: #e0e7ff;
+    }
   }
 `;
