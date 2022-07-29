@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { BiUser, BiAt } from "react-icons/bi";
@@ -12,6 +12,16 @@ export default function Login() {
   const [usernameCheckShow, setUsernameCheckShow] = useState<boolean>(false);
   const [usernameError, setuserNameError] = useState<boolean>(false);
 
+  // Input states
+  const [name, setName] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+
+  // On form submit
+  const onFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setNameError(false);
+  };
+
   return (
     <Main>
       <LoginWrapper>
@@ -20,7 +30,7 @@ export default function Login() {
         </LogoWrapper>
         <Tagline>A secure and better way to Hello</Tagline>
         <LoginText>Add your information</LoginText>
-        <FormWrapper>
+        <FormWrapper onSubmit={onFormSubmit}>
           <Label htmlFor="name">Name</Label>
           <InputWrapper>
             <BiUser />
@@ -29,6 +39,7 @@ export default function Login() {
               id="name"
               type="text"
               placeholder="Enter your name"
+              onChange={(e) => setName(e.target.value)}
             />
           </InputWrapper>
           <InputError show={nameError}>
@@ -41,6 +52,7 @@ export default function Login() {
               id="username"
               type="text"
               placeholder="Enter a username"
+              onChange={(e) => setUsername(e.target.value)}
             />
             <BiAt />
           </InputWrapper>
@@ -172,8 +184,13 @@ const InputError = styled.p<{ show: boolean }>`
 
 const UsernameCheck = styled.div<UsernameCheckType>`
   margin-top: 2px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   padding-left: 4px;
+
+  .username-check {
+    display: ${({ show }) => (show ? "block" : "none")};
+  }
+
   .top {
     display: flex;
     column-gap: 5px;
