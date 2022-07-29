@@ -1,10 +1,17 @@
+import { useState } from "react";
 import styled from "styled-components";
+
 import { BiUser, BiAt } from "react-icons/bi";
 import { FiCheck, FiX } from "react-icons/fi";
 
 import { UsernameCheckType } from "./types";
 
 export default function Login() {
+  // Error states
+  const [nameError, setNameError] = useState<boolean>(false);
+  const [usernameCheckShow, setUsernameCheckShow] = useState<boolean>(false);
+  const [usernameError, setuserNameError] = useState<boolean>(false);
+
   return (
     <Main>
       <LoginWrapper>
@@ -18,29 +25,33 @@ export default function Login() {
           <InputWrapper>
             <BiUser />
             <Input
-              error={false}
+              error={nameError}
               id="name"
               type="text"
               placeholder="Enter your name"
             />
           </InputWrapper>
-          <InputError show={false}>
+          <InputError show={nameError}>
             Name should be of atleast 3 characters
           </InputError>
           <Label htmlFor="username">Username</Label>
           <InputWrapper>
             <Input
-              error={false}
+              error={usernameError}
               id="username"
               type="text"
               placeholder="Enter a username"
             />
             <BiAt />
           </InputWrapper>
-          <UsernameCheck show={true} status="success">
-            <div className="top">
-              <FiCheck />
-              <p>This username is available</p>
+          <UsernameCheck show={usernameCheckShow} error={usernameError}>
+            <div className="username-check">
+              <div className="top">
+                {usernameError ? <FiX /> : <FiCheck />}
+                <p>
+                  This username is {usernameError ? "unavailable" : "available"}
+                </p>
+              </div>
             </div>
           </UsernameCheck>
           <Next>Confirm</Next>
@@ -163,12 +174,11 @@ const UsernameCheck = styled.div<UsernameCheckType>`
   margin-top: 2px;
   margin-bottom: 20px;
   padding-left: 4px;
-
   .top {
     display: flex;
     column-gap: 5px;
     align-items: center;
-    color: ${({ status }) => (status === "success" ? "#dc2626" : "#16A34A")};
+    color: ${({ error }) => (error ? "#dc2626" : "#16A34A")};
 
     svg {
       width: 20px;
