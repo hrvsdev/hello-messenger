@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-import ContactList from "../contact-list";
+import LeftColumn from "../left-column";
 
 export default function home(): JSX.Element {
   return (
     <Main>
-      <ContactList />
+      <LeftColumn />
     </Main>
   );
 }
