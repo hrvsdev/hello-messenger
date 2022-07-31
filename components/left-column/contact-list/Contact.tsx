@@ -3,37 +3,34 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function Contact(): JSX.Element {
+import { ContactType } from "../types";
+
+export default function Contact(props: ContactType): JSX.Element {
+  // Props destructuring
+  const { id, picture, name, message, time } = props;
+
   return (
-    <ContactClick href="/">
-      <ContactWrapper>
+    <Link href={id}>
+      <ContactWrapper as="a">
         <Picture>
-          <Image
-            src="https://dummyimage.com/50"
-            alt="An image"
-            width="50"
-            height="50"
-          />
+          <Image src={picture} alt="An image" width="50" height="50" />
         </Picture>
         <ContactInfo>
           <Top>
-            <Name>Harsh Vyas</Name>
-            <Time>Aug 28</Time>
+            <Name>{name}</Name>
+            <Time>{time}</Time>
           </Top>
           <Bottom>
-            <Message>It&apos;s time to go home</Message>
+            <Message>{message}</Message>
           </Bottom>
         </ContactInfo>
       </ContactWrapper>
-    </ContactClick>
+    </Link>
   );
 }
 
-const ContactClick = styled(Link)`
-  cursor: pointer;
-`;
-
 const ContactWrapper = styled.div`
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: center;

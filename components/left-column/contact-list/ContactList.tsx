@@ -3,9 +3,17 @@ import styled from "styled-components";
 import Contact from "./Contact";
 
 export default function ContactList(): JSX.Element {
+  const fakeUser = {
+    name: "Harsh Vyas",
+    id: "/788",
+    time: "Aug 28",
+    picture: "https://dummyimage.com/50",
+    message: "Hello Messenger !",
+  };
+
   return (
     <Contacts>
-      <Contact />
+      <Contact {...fakeUser} />
     </Contacts>
   );
 }
