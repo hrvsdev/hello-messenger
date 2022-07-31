@@ -61,7 +61,6 @@ const ContactWrapper = styled.div`
   align-items: center;
   height: 72px;
   padding: 0 10px;
-  padding-right: 13px;
   width: 100%;
   border-radius: 12px;
   transition: background 250ms;

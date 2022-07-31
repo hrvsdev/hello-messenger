@@ -15,32 +15,6 @@ export default function ContactList(): JSX.Element {
     <Contacts>
       <Contact {...fakeUser} />
       <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
     </Contacts>
   );
 }
@@ -51,27 +25,17 @@ const Contacts = styled.div`
   flex-direction: column;
   padding: 10px;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
   
-
-  /* width */
-&::-webkit-scrollbar {
-  width: 20px;
-}
-
-/* Track */
-&::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
-  border-radius: 10px;
-}
- 
-/* Handle */
-&::-webkit-scrollbar-thumb {
-  background: red; 
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-&::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
-}
+  &::-webkit-scrollbar-thumb {
+    background: #f4f4f4;
+    border-radius: 3px;
+    
+    &:hover {
+      background: #e8e8e8;
+    }
+  }
 `;
