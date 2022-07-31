@@ -5,7 +5,7 @@ import Contact from "./Contact";
 export default function ContactList(): JSX.Element {
   const fakeUser = {
     name: "Harsh Vyas",
-    id: "/788",
+    id: "/",
     time: "Aug 28",
     picture: "https://dummyimage.com/50",
     message: "Hello Messenger !",

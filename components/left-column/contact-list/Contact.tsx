@@ -1,17 +1,28 @@
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 import { ContactType } from "../types";
+import ContextMenu from "../context-menu";
 
 export default function Contact(props: ContactType): JSX.Element {
   // Props destructuring
   const { id, picture, name, message, time } = props;
 
+  // Context Menu State
+  const [showMenu, setShowMenu] = useState<boolean>(false);
+
+  // Context Menu function
+  const onContextMenu = (e: React.MouseEvent): void => {
+    e.preventDefault();
+    setShowMenu(true);
+  };
+
   return (
     <Link href={id}>
-      <ContactWrapper as="a">
+      <ContactWrapper onContextMenu={onContextMenu} as="a">
+        <ContextMenu/>
         <Picture>
           <Image src={picture} alt="An image" width="50" height="50" />
         </Picture>
@@ -32,6 +43,7 @@ export default function Contact(props: ContactType): JSX.Element {
 const ContactWrapper = styled.div`
   cursor: pointer;
   display: flex;
+  position: relative;
   flex-direction: row;
   align-items: center;
   column-gap: 15px;
