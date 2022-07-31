@@ -24,6 +24,7 @@ const Contacts = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 10px;
+  flex-grow: 1;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
