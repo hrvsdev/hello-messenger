@@ -5,3 +5,9 @@ export interface ContactType {
   message: string;
   time: string;
 }
+
+export interface ContextMenuType {
+  anchorPoint: { x: number; y: number };
+  toggleMenu: Function;
+  menuProps: any;
+}

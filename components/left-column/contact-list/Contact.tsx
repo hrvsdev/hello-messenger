@@ -1,7 +1,9 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+
+import { useMenuState } from "@szhsin/react-menu";
 
 import { ContactType } from "../types";
 import ContextMenu from "../context-menu";
@@ -10,19 +12,30 @@ export default function Contact(props: ContactType): JSX.Element {
   // Props destructuring
   const { id, picture, name, message, time } = props;
 
-  // Context Menu State
-  const [showMenu, setShowMenu] = useState<boolean>(false);
+  // Context menu hook
+  const [menuProps, toggleMenu] = useMenuState();
 
-  // Context Menu function
+  // Context menu anchor point state
+  const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
+
+  // Context menu function
   const onContextMenu = (e: React.MouseEvent): void => {
     e.preventDefault();
-    setShowMenu(true);
+    setAnchorPoint({ x: e.clientX, y: e.clientY });
+    toggleMenu(true);
+  };
+
+  // Context menu props object
+  const contextMenuData = {
+    menuProps: menuProps,
+    toggleMenu: toggleMenu,
+    anchorPoint: anchorPoint,
   };
 
   return (
     <Link href={id}>
       <ContactWrapper onContextMenu={onContextMenu} as="a">
-        <ContextMenu/>
+        <ContextMenu {...contextMenuData} />
         <Picture>
           <Image src={picture} alt="An image" width="50" height="50" />
         </Picture>
@@ -46,22 +59,23 @@ const ContactWrapper = styled.div`
   position: relative;
   flex-direction: row;
   align-items: center;
-  column-gap: 15px;
   height: 72px;
   padding: 0 10px;
   padding-right: 13px;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 12px;
   transition: background 250ms;
+  flex-shrink: 0;
 
   &:hover {
-    background: #f9fafb;
+    background: #f4f4f4;
   }
 `;
 
 const Picture = styled.div`
   width: 50px;
   height: 50px;
+  margin-right: 15px;
   img {
     border-radius: 25px;
   }
