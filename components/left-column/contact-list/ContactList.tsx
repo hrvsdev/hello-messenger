@@ -2,9 +2,13 @@ import styled from "styled-components";
 
 import Contact from "./Contact";
 
-export default function ContactGrid(): JSX.Element {
+export default function ContactList(): JSX.Element {
   return (
     <Contacts>
+      <Contact />
+      <Contact />
+      <Contact />
+      <Contact />
       <Contact />
     </Contacts>
   );

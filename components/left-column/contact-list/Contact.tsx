@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
 export default function Contact():JSX.Element {
   return (
