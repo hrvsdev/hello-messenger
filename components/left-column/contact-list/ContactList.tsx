@@ -6,10 +6,6 @@ export default function ContactList(): JSX.Element {
   return (
     <Contacts>
       <Contact />
-      <Contact />
-      <Contact />
-      <Contact />
-      <Contact />
     </Contacts>
   );
 }

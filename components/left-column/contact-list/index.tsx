@@ -1,2 +1,2 @@
-import ContactList from "../LeftColumn";
+import ContactList from "./ContactList";
 export default ContactList
