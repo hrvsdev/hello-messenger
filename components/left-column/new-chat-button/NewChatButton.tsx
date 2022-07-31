@@ -44,8 +44,7 @@ const NewChatMenuDialog = styled.ul<{ show: boolean }>`
   z-index: 1;
   background: rgba(255, 255, 255, 0.733);
   backdrop-filter: blur(10px);
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 8px;
   border-radius: 12px;
   width: 200px;
