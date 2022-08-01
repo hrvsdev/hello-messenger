@@ -17,7 +17,7 @@ export default function ContactList(): JSX.Element {
   };
 
   const u1 = {
-    id: "1",
+    id: "login",
   };
 
   const u2 = {
