@@ -13,11 +13,8 @@ import ContextMenu from "../context-menu";
 
 export default function Contact(props: ContactType): JSX.Element {
   // Props destructuring
-  const { id, picture, name, message, time, selection } = props;
-  const { setSelection, selectedContacts, setSelectedContacts } = props;
-
-  // Chat selection state
-  const [selected, setSelected] = useState<boolean>(false);
+  const { id, picture, name, message, time } = props;
+  const { selectedContacts, setSelectedContacts } = props;
 
   // Context menu hook
   const [menuProps, toggleMenu] = useMenuState();
@@ -26,9 +23,8 @@ export default function Contact(props: ContactType): JSX.Element {
   const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
 
   // Toogle selection
-  const toggleSelection = (id: string) => {
+  const toggleSelection = () => {
     if (selectedContacts.length) {
-      setSelected((prev) => !prev);
       setSelectedContacts((prev) => addOrRemove(prev, id));
     }
   };
@@ -36,7 +32,7 @@ export default function Contact(props: ContactType): JSX.Element {
   // Context menu function
   const onContextMenu = (e: React.MouseEvent): void => {
     e.preventDefault();
-    if (!selected) {
+    if (!selectedContacts.includes(id)) {
       setAnchorPoint({ x: e.clientX, y: e.clientY });
       toggleMenu(true);
     }
@@ -48,18 +44,14 @@ export default function Contact(props: ContactType): JSX.Element {
     menuProps: menuProps,
     toggleMenu: toggleMenu,
     anchorPoint: anchorPoint,
-    setSelected: setSelected,
     setSelectedContacts: setSelectedContacts,
   };
 
   return (
     <ContactRootWrapper>
       <ContextMenu {...contextMenuData} />
-      <ContactWrapper
-        onClick={() => toggleSelection(id)}
-        onContextMenu={onContextMenu}
-      >
-        <Picture selected={selected}>
+      <ContactWrapper onClick={toggleSelection} onContextMenu={onContextMenu}>
+        <Picture selected={selectedContacts.includes(id)}>
           <Image src={picture} alt="An image" width="50" height="50" />
           <BiCheck />
         </Picture>

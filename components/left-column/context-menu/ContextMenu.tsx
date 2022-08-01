@@ -9,11 +9,10 @@ import { addOrRemove } from "../utils";
 
 export default function ContextMenu(props: ContextMenuType): JSX.Element {
   const { anchorPoint, toggleMenu, menuProps } = props;
-  const { setSelected, id, setSelectedContacts } = props;
+  const { id, setSelectedContacts } = props;
 
   // Select button action
   const select = () => {
-    setSelected((prev) => !prev);
     setSelectedContacts((prev) => addOrRemove(prev, id));
   };
 

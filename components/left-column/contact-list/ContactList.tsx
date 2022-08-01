@@ -4,9 +4,6 @@ import styled from "styled-components";
 import Contact from "./Contact";
 
 export default function ContactList(): JSX.Element {
-  // Selection mode state
-  const [selection, setSelection] = useState<boolean>(false);
-
   // Selected contact array
   const [selectedContacts, setSelectedContacts] = useState<string[]>([]);
 
@@ -15,8 +12,6 @@ export default function ContactList(): JSX.Element {
     time: "Aug 28",
     picture: "https://dummyimage.com/50",
     message: "Hello Messenger !",
-    selection: selection,
-    setSelection: setSelection,
     selectedContacts: selectedContacts,
     setSelectedContacts: setSelectedContacts,
   };
