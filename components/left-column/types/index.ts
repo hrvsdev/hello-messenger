@@ -4,6 +4,7 @@ export interface ContactType {
   name: string;
   message: string;
   time: string;
+  setSelectedContacts: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 export interface ContextMenuType {

@@ -1,20 +1,37 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 import Contact from "./Contact";
 
 export default function ContactList(): JSX.Element {
+  // Selected contact array
+  const [selectedContacts, setSelectedContacts] = useState<string[]>([]);
+
   const fakeUser = {
     name: "Harsh Vyas",
-    id: "/",
     time: "Aug 28",
     picture: "https://dummyimage.com/50",
     message: "Hello Messenger !",
+    setSelectedContacts: setSelectedContacts,
   };
+
+  const u1 = {
+    id: '1'
+  }
+
+  const u2 = {
+    id: '2'
+  }
+
+  const u3 = {
+    id: '3'
+  }
 
   return (
     <Contacts>
-      <Contact {...fakeUser} />
-      <Contact {...fakeUser} />
+      <Contact {...fakeUser} {...u1}/>
+      <Contact {...fakeUser} {...u2} />
+      <Contact {...fakeUser} {...u3} />
     </Contacts>
   );
 }
@@ -30,11 +47,11 @@ const Contacts = styled.div`
   &::-webkit-scrollbar {
     width: 5px;
   }
-  
+
   &::-webkit-scrollbar-thumb {
     background: #f4f4f4;
     border-radius: 3px;
-    
+
     &:hover {
       background: #e8e8e8;
     }

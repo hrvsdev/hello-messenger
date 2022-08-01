@@ -1,22 +1,39 @@
 import React, { useState } from "react";
+import { useMenuState } from "@szhsin/react-menu";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 
-import { useMenuState } from "@szhsin/react-menu";
+import { BiCheck } from "react-icons/bi";
 
 import { ContactType } from "../types";
 import ContextMenu from "../context-menu";
 
 export default function Contact(props: ContactType): JSX.Element {
   // Props destructuring
-  const { id, picture, name, message, time } = props;
+  const { id, picture, name, message, time, setSelectedContacts } = props;
+
+  // Chat selection state
+  const [selected, setSelected] = useState<boolean>(false);
 
   // Context menu hook
   const [menuProps, toggleMenu] = useMenuState();
 
   // Context menu anchor point state
   const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
+
+  // Add or remove item from immutable array
+  const addOrRemove = (arr: string[], item: string): string[] => {
+    if (arr.includes(item)) {
+      return arr.filter((i) => i !== item);
+    } else return [...arr, item];
+  };
+
+  // Toogle selection
+  const toggleSelection = (id: string) => {
+    setSelected((prev) => !prev);
+    setSelectedContacts((prev) => addOrRemove(prev, id));
+  };
 
   // Context menu function
   const onContextMenu = (e: React.MouseEvent): void => {
@@ -33,11 +50,15 @@ export default function Contact(props: ContactType): JSX.Element {
   };
 
   return (
-    <Link href={id}>
-      <ContactWrapper onContextMenu={onContextMenu} as="a">
-        <ContextMenu {...contextMenuData} />
-        <Picture>
+    <ContactRootWrapper>
+      <ContextMenu {...contextMenuData} />
+      <ContactWrapper
+        onClick={() => toggleSelection(id)}
+        onContextMenu={onContextMenu}
+      >
+        <Picture selected={selected}>
           <Image src={picture} alt="An image" width="50" height="50" />
+          <BiCheck />
         </Picture>
         <ContactInfo>
           <Top>
@@ -49,9 +70,13 @@ export default function Contact(props: ContactType): JSX.Element {
           </Bottom>
         </ContactInfo>
       </ContactWrapper>
-    </Link>
+    </ContactRootWrapper>
   );
 }
+
+const ContactRootWrapper = styled.div`
+  width: 100%;
+`;
 
 const ContactWrapper = styled.div`
   cursor: pointer;
@@ -65,18 +90,33 @@ const ContactWrapper = styled.div`
   border-radius: 12px;
   transition: background 250ms;
   flex-shrink: 0;
+  user-select: none;
 
   &:hover {
     background: #f4f4f4;
   }
 `;
 
-const Picture = styled.div`
+const Picture = styled.div<{ selected: boolean }>`
   width: 50px;
   height: 50px;
   margin-right: 15px;
+  position: relative;
+
   img {
     border-radius: 25px;
+  }
+
+  svg {
+    position: absolute;
+    color: white;
+    width: 20px;
+    height: 20px;
+    bottom: 0;
+    right: 0;
+    background: blue;
+    border-radius: 50%;
+    display: ${({ selected }) => (selected ? "block" : "none")};
   }
 `;
 
