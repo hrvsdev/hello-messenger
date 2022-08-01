@@ -36,8 +36,10 @@ export default function Contact(props: ContactType): JSX.Element {
   // Context menu function
   const onContextMenu = (e: React.MouseEvent): void => {
     e.preventDefault();
-    setAnchorPoint({ x: e.clientX, y: e.clientY });
-    toggleMenu(true);
+    if (!selected) {
+      setAnchorPoint({ x: e.clientX, y: e.clientY });
+      toggleMenu(true);
+    }
   };
 
   // Context menu props object
