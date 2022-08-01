@@ -59,10 +59,10 @@ const NewChatMenuDialog = styled.ul<{ show: boolean }>`
 const Option = styled.li`
   display: flex;
   align-items: center;
-  column-gap: 15px;
+  column-gap: 18px;
   border-radius: 8px;
   padding: 0 12px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   width: 100%;
   cursor: pointer;

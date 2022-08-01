@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { MenuItem, ControlledMenu } from "@szhsin/react-menu";
 
-import { BiCheckCircle } from "react-icons/bi";
+import { BiCheckCircle, BiTrashAlt, BiArchive } from "react-icons/bi";
+import { BiBellOff, BiMessageSquareDots } from "react-icons/bi";
 
 import { ContextMenuType } from "../types";
 
@@ -17,8 +18,18 @@ export default function ContextMenu(props: ContextMenuType): JSX.Element {
       <MenuItem>
         <BiCheckCircle /> Select
       </MenuItem>
-      <MenuItem>Delete</MenuItem>
-      <MenuItem>View</MenuItem>
+      <MenuItem>
+        <BiArchive /> Archive
+      </MenuItem>
+      <MenuItem>
+        <BiBellOff /> Mute
+      </MenuItem>
+      <MenuItem>
+        <BiMessageSquareDots /> Mark as unread
+      </MenuItem>
+      <MenuItem className="delete">
+        <BiTrashAlt /> Delete
+      </MenuItem>
     </Menu>
   );
 }
@@ -37,10 +48,10 @@ const Menu = styled(ControlledMenu)`
   li {
     display: flex;
     align-items: center;
-    column-gap: 15px;
+    column-gap: 18px;
     border-radius: 8px;
     padding: 0 12px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     width: 100%;
     cursor: pointer;
@@ -49,12 +60,17 @@ const Menu = styled(ControlledMenu)`
 
     svg {
       color: rgb(112, 117, 121);
-      width: 21px;
-      height: 21px;
+      width: 20px;
+      height: 20px;
     }
 
     &:hover {
       background-color: #f4f4f4;
+    }
+
+    &.delete,
+    &.delete svg {
+      color: #ef4444;
     }
   }
 `;
