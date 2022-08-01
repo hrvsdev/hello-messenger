@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMenuState } from "@szhsin/react-menu";
 import styled from "styled-components";
 import Image from "next/image";
@@ -50,21 +50,23 @@ export default function Contact(props: ContactType): JSX.Element {
   return (
     <ContactRootWrapper>
       <ContextMenu {...contextMenuData} />
-      <ContactWrapper onClick={toggleSelection} onContextMenu={onContextMenu}>
-        <Picture selected={selectedContacts.includes(id)}>
-          <Image src={picture} alt="An image" width="50" height="50" />
-          <BiCheck />
-        </Picture>
-        <ContactInfo>
-          <Top>
-            <Name>{name}</Name>
-            <Time>{time}</Time>
-          </Top>
-          <Bottom>
-            <Message>{message}</Message>
-          </Bottom>
-        </ContactInfo>
-      </ContactWrapper>
+      <Link href={selectedContacts.length ? "/" : id}>
+        <ContactWrapper onClick={toggleSelection} onContextMenu={onContextMenu}>
+          <Picture selected={selectedContacts.includes(id)}>
+            <Image src={picture} alt="An image" width="50" height="50" />
+            <BiCheck />
+          </Picture>
+          <ContactInfo>
+            <Top>
+              <Name>{name}</Name>
+              <Time>{time}</Time>
+            </Top>
+            <Bottom>
+              <Message>{message}</Message>
+            </Bottom>
+          </ContactInfo>
+        </ContactWrapper>
+      </Link>
     </ContactRootWrapper>
   );
 }
