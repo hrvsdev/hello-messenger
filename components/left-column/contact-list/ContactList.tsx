@@ -4,6 +4,9 @@ import styled from "styled-components";
 import Contact from "./Contact";
 
 export default function ContactList(): JSX.Element {
+  // Selection mode state
+  const [selection, setSelection] = useState<boolean>(false);
+
   // Selected contact array
   const [selectedContacts, setSelectedContacts] = useState<string[]>([]);
 
@@ -12,24 +15,27 @@ export default function ContactList(): JSX.Element {
     time: "Aug 28",
     picture: "https://dummyimage.com/50",
     message: "Hello Messenger !",
+    selection: selection,
+    setSelection: setSelection,
+    selectedContacts: selectedContacts,
     setSelectedContacts: setSelectedContacts,
   };
 
   const u1 = {
-    id: '1'
-  }
+    id: "1",
+  };
 
   const u2 = {
-    id: '2'
-  }
+    id: "2",
+  };
 
   const u3 = {
-    id: '3'
-  }
+    id: "3",
+  };
 
   return (
     <Contacts>
-      <Contact {...fakeUser} {...u1}/>
+      <Contact {...fakeUser} {...u1} />
       <Contact {...fakeUser} {...u2} />
       <Contact {...fakeUser} {...u3} />
     </Contacts>

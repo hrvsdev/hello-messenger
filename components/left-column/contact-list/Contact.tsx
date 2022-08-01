@@ -7,11 +7,14 @@ import Link from "next/link";
 import { BiCheck } from "react-icons/bi";
 
 import { ContactType } from "../types";
+import { addOrRemove } from "../utils";
+
 import ContextMenu from "../context-menu";
 
 export default function Contact(props: ContactType): JSX.Element {
   // Props destructuring
-  const { id, picture, name, message, time, setSelectedContacts } = props;
+  const { id, picture, name, message, time, selection } = props;
+  const { setSelection, selectedContacts, setSelectedContacts } = props;
 
   // Chat selection state
   const [selected, setSelected] = useState<boolean>(false);
@@ -22,17 +25,12 @@ export default function Contact(props: ContactType): JSX.Element {
   // Context menu anchor point state
   const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
 
-  // Add or remove item from immutable array
-  const addOrRemove = (arr: string[], item: string): string[] => {
-    if (arr.includes(item)) {
-      return arr.filter((i) => i !== item);
-    } else return [...arr, item];
-  };
-
   // Toogle selection
   const toggleSelection = (id: string) => {
-    setSelected((prev) => !prev);
-    setSelectedContacts((prev) => addOrRemove(prev, id));
+    if (selectedContacts.length) {
+      setSelected((prev) => !prev);
+      setSelectedContacts((prev) => addOrRemove(prev, id));
+    }
   };
 
   // Context menu function
@@ -44,9 +42,12 @@ export default function Contact(props: ContactType): JSX.Element {
 
   // Context menu props object
   const contextMenuData = {
+    id: id,
     menuProps: menuProps,
     toggleMenu: toggleMenu,
     anchorPoint: anchorPoint,
+    setSelected: setSelected,
+    setSelectedContacts: setSelectedContacts,
   };
 
   return (

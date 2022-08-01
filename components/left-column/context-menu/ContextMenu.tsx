@@ -5,9 +5,17 @@ import { BiCheckCircle, BiTrashAlt, BiArchive } from "react-icons/bi";
 import { BiBellOff, BiMessageSquareDots } from "react-icons/bi";
 
 import { ContextMenuType } from "../types";
+import { addOrRemove } from "../utils";
 
 export default function ContextMenu(props: ContextMenuType): JSX.Element {
   const { anchorPoint, toggleMenu, menuProps } = props;
+  const { setSelected, id, setSelectedContacts } = props;
+
+  // Select button action
+  const select = () => {
+    setSelected((prev) => !prev);
+    setSelectedContacts((prev) => addOrRemove(prev, id));
+  };
 
   return (
     <Menu
@@ -15,7 +23,7 @@ export default function ContextMenu(props: ContextMenuType): JSX.Element {
       anchorPoint={anchorPoint}
       onClose={() => toggleMenu(false)}
     >
-      <MenuItem>
+      <MenuItem onClick={select}>
         <BiCheckCircle /> Select
       </MenuItem>
       <MenuItem>
