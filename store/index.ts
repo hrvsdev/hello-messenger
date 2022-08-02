@@ -1,5 +1,5 @@
-import { hookstate, useHookstate, useState } from "@hookstate/core";
+import { hookstate, useState } from "@hookstate/core";
 
-const store = hookstate("hello");
+const globalStore = hookstate("store");
 
-export const useStore = () => useHookstate(store);
+export const useGlobalStore = () => useState(globalStore);
