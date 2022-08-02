@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from "@hookstate/core";
 import styled from "styled-components";
 import ClickAwayListener from "@mui/base/ClickAwayListener";
 
@@ -7,17 +7,17 @@ import { BiUser, BiGroup, BiUserVoice } from "react-icons/bi";
 
 export default function NewChatButton(): JSX.Element {
   // Menu show state
-  const [show, setShow] = useState<boolean>(false);
+  const show = useState<boolean>(false);
 
   // Close
-  const close = () => setShow(false);
+  const close = () => show.set(false);
 
   // Toggle
-  const toggle = () => setShow((prev) => !prev);
+  const toggle = () => show.set((prev) => !prev);
 
   return (
     <>
-      <NewChatMenuDialog show={show}>
+      <NewChatMenuDialog show={show.value}>
         <Option>
           <BiUserVoice /> New Channel
         </Option>
@@ -29,7 +29,7 @@ export default function NewChatButton(): JSX.Element {
         </Option>
       </NewChatMenuDialog>
       <ClickAwayListener onClickAway={close}>
-        <ButtonWrapper onClick={toggle} show={show}>
+        <ButtonWrapper onClick={toggle} show={show.value}>
           <FiPlus />
         </ButtonWrapper>
       </ClickAwayListener>
