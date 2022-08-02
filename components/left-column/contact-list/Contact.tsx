@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React  from "react";
+import { useState } from "@hookstate/core";
 import { useMenuState } from "@szhsin/react-menu";
 import styled from "styled-components";
 import Image from "next/image";
