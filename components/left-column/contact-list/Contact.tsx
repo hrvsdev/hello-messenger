@@ -1,6 +1,6 @@
-import React  from "react";
 import { useState } from "@hookstate/core";
 import { useMenuState } from "@szhsin/react-menu";
+
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,7 +21,7 @@ export default function Contact(props: ContactType): JSX.Element {
   const [menuProps, toggleMenu] = useMenuState();
 
   // Context menu anchor point state
-  const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
+  const anchorPoint = useState({ x: 0, y: 0 });
 
   // Toogle selection
   const toggleSelection = () => {
@@ -34,7 +34,7 @@ export default function Contact(props: ContactType): JSX.Element {
   const onContextMenu = (e: React.MouseEvent): void => {
     e.preventDefault();
     if (!selectedContacts.includes(id)) {
-      setAnchorPoint({ x: e.clientX, y: e.clientY });
+      anchorPoint.set({ x: e.clientX, y: e.clientY });
       toggleMenu(true);
     }
   };
@@ -44,7 +44,7 @@ export default function Contact(props: ContactType): JSX.Element {
     id: id,
     menuProps: menuProps,
     toggleMenu: toggleMenu,
-    anchorPoint: anchorPoint,
+    anchorPoint: anchorPoint.get(),
     setSelectedContacts: setSelectedContacts,
   };
 
