@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "@hookstate/core";
 import styled from "styled-components";
 
 import { FaUser } from "react-icons/fa";
@@ -7,13 +7,13 @@ import { BiEnvelope } from "react-icons/bi";
 
 export default function Login() {
   // Input state
-  const [email, setEmail] = useState<string>("");
+  const email = useState<string>("");
 
   // Input error state
-  const [emailError, setEmailError] = useState<boolean>(false);
+  const emailError = useState<boolean>(false);
 
   const onEmailInput = (e: React.FormEvent<HTMLInputElement>) => {
-    setEmail(e.currentTarget.value);
+    email.set(e.currentTarget.value);
   };
 
   return (
@@ -41,13 +41,13 @@ export default function Login() {
           <InputWrapper>
             <BiEnvelope />
             <Input
-            error={emailError}
+            error={emailError.value}
               type="email"
               placeholder="Enter email"
               onChange={onEmailInput}
             />
           </InputWrapper>
-          <Error show={emailError}>Invalid email</Error>
+          <Error show={emailError.value}>Invalid email</Error>
           <Next>Next</Next>
         </EmailWrapper>
       </LoginWrapper>

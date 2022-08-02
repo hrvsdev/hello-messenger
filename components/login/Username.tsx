@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "@hookstate/core";
 import styled from "styled-components";
 
 import { BiUser, BiAt } from "react-icons/bi";
@@ -8,18 +8,18 @@ import { UsernameCheckType } from "./types";
 
 export default function Login() {
   // Input states
-  const [name, setName] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
+  const name = useState<string>("");
+  const username = useState<string>("");
 
   // Error states
-  const [nameError, setNameError] = useState<boolean>(false);
-  const [usernameCheckShow, setUsernameCheckShow] = useState<boolean>(false);
-  const [usernameError, setuserNameError] = useState<boolean>(false);
+  const nameError = useState<boolean>(false);
+  const showUsernameChecker = useState<boolean>(false);
+  const usernameError = useState<boolean>(false);
 
   // On form submit
   const onFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setNameError(false);
+    nameError.set(false);
   };
 
   return (
@@ -35,33 +35,29 @@ export default function Login() {
           <InputWrapper>
             <BiUser />
             <Input
-              error={nameError}
+              error={nameError.value}
               id="name"
               type="text"
               placeholder="Enter your name"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => name.set(e.target.value)}
             />
           </InputWrapper>
-          <InputError show={nameError}>
-            Name should be of atleast 3 characters
-          </InputError>
+          <InputError show={nameError.value}>Name should be of atleast 3 characters</InputError>
           <Label htmlFor="username">Username</Label>
           <InputWrapper>
             <Input
-              error={usernameError}
+              error={usernameError.value}
               id="username"
               type="text"
               placeholder="Enter a username"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => username.set(e.target.value)}
             />
             <BiAt />
           </InputWrapper>
-          <UsernameCheck show={usernameCheckShow} error={usernameError}>
+          <UsernameCheck show={showUsernameChecker.value} error={usernameError.value}>
             <div className="top">
-              {usernameError ? <FiX /> : <FiCheck />}
-              <p>
-                This username is {usernameError ? "unavailable" : "available"}
-              </p>
+              {usernameError.value ? <FiX /> : <FiCheck />}
+              <p>This username is {usernameError ? "unavailable" : "available"}</p>
             </div>
           </UsernameCheck>
           <Next>Confirm</Next>
