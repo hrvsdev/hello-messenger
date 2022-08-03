@@ -1,11 +1,12 @@
+import { State } from "@hookstate/core";
+
 export interface ContactType {
   id: string;
   picture: string;
   name: string;
   message: string;
   time: string;
-  selectedContacts: string[];
-  setSelectedContacts: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedContacts: State<string[]>;
 }
 
 export interface ContextMenuType {
@@ -13,5 +14,5 @@ export interface ContextMenuType {
   anchorPoint: { x: number; y: number };
   toggleMenu: Function;
   menuProps: any;
-  setSelectedContacts: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedContacts: State<string[]>;
 }

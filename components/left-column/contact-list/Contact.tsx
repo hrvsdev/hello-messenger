@@ -15,7 +15,7 @@ import ContextMenu from "../context-menu";
 export default function Contact(props: ContactType): JSX.Element {
   // Props destructuring
   const { id, picture, name, message, time } = props;
-  const { selectedContacts, setSelectedContacts } = props;
+  const { selectedContacts } = props;
 
   // Context menu hook
   const [menuProps, toggleMenu] = useMenuState();
@@ -26,14 +26,14 @@ export default function Contact(props: ContactType): JSX.Element {
   // Toogle selection
   const toggleSelection = () => {
     if (selectedContacts.length) {
-      setSelectedContacts((prev) => addOrRemove(prev, id));
+      selectedContacts.set((prev) => addOrRemove(prev, id));
     }
   };
 
   // Context menu function
   const onContextMenu = (e: React.MouseEvent): void => {
     e.preventDefault();
-    if (!selectedContacts.includes(id)) {
+    if (!selectedContacts.get().includes(id)) {
       anchorPoint.set({ x: e.clientX, y: e.clientY });
       toggleMenu(true);
     }
@@ -45,7 +45,7 @@ export default function Contact(props: ContactType): JSX.Element {
     menuProps: menuProps,
     toggleMenu: toggleMenu,
     anchorPoint: anchorPoint.get(),
-    setSelectedContacts: setSelectedContacts,
+    selectedContacts: selectedContacts,
   };
 
   return (
@@ -53,7 +53,7 @@ export default function Contact(props: ContactType): JSX.Element {
       <ContextMenu {...contextMenuData} />
       <Link href={selectedContacts.length ? "/" : id}>
         <ContactWrapper onClick={toggleSelection} onContextMenu={onContextMenu}>
-          <Picture selected={selectedContacts.includes(id)}>
+          <Picture selected={selectedContacts.get().includes(id)}>
             <Image src={picture} alt="An image" width="50" height="50" />
             <BiCheck />
           </Picture>

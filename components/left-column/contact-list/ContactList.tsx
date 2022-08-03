@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState } from "@hookstate/core";
 import styled from "styled-components";
 
 import Contact from "./Contact";
 
 export default function ContactList(): JSX.Element {
   // Selected contact array
-  const [selectedContacts, setSelectedContacts] = useState<string[]>([]);
+  const selectedContacts = useState<string[]>([]);
 
   const fakeUser = {
     name: "Harsh Vyas",
@@ -13,7 +13,6 @@ export default function ContactList(): JSX.Element {
     picture: "https://dummyimage.com/50",
     message: "Hello Messenger !",
     selectedContacts: selectedContacts,
-    setSelectedContacts: setSelectedContacts,
   };
 
   const u1 = {
