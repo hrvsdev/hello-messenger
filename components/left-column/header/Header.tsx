@@ -21,8 +21,9 @@ const HeaderWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  height: 56px;
   column-gap: 12px;
-  padding: 7px 8px;
+  padding-left: 8px;
   padding-right: 14px
 `;
 
@@ -33,7 +34,7 @@ const MenuIcon = styled.div`
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  color: #5a5a5a;
+  color: rgb(112,117,121);
   transition: background 250ms;
 
   &:hover {
