@@ -72,7 +72,7 @@ const Menu = styled(ControlledMenu)`
     }
 
     &:hover {
-      background-color: #f4f4f4;
+      background-color: rgba(0, 0, 0, 0.05);
     }
 
     &.delete,

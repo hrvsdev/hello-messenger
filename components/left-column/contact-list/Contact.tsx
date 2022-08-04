@@ -148,6 +148,7 @@ const Bottom = styled.div`
 `;
 
 const Message = styled.p`
-  font-size: 16px;
+  font-size: 15px;
+  letter-spacing: 0.2px;
   color: #616161;
 `;

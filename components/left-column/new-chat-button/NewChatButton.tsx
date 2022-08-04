@@ -63,7 +63,7 @@ const Option = styled.li`
   border-radius: 8px;
   padding: 0 12px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   width: 100%;
   cursor: pointer;
   height: 36px;
@@ -76,7 +76,7 @@ const Option = styled.li`
   }
 
   &:hover {
-    background-color: #f4f4f4;
+    background-color: rgba(0, 0, 0, 0.05);
   }
 `;
 
