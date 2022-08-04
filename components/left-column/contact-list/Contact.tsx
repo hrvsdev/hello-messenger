@@ -134,12 +134,11 @@ const Top = styled.div`
 `;
 
 const Name = styled.p`
-  font-weight: 600;
+  font-weight: 500;
   font-size: 17px;
 `;
 const Time = styled.p`
   font-size: 13px;
-  font-weight: 600;
 `;
 
 const Bottom = styled.div`
@@ -149,7 +148,6 @@ const Bottom = styled.div`
 `;
 
 const Message = styled.p`
-  font-weight: 500;
   font-size: 16px;
   color: #616161;
 `;

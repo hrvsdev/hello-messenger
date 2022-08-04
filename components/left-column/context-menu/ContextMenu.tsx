@@ -59,7 +59,7 @@ const Menu = styled(ControlledMenu)`
     border-radius: 8px;
     padding: 0 12px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     width: 100%;
     cursor: pointer;
     height: 36px;

@@ -10,21 +10,23 @@ export default function ContactList(): JSX.Element {
   const fakeUser = {
     name: "Harsh Vyas",
     time: "Aug 28",
-    picture: "https://dummyimage.com/50",
     message: "Hello Messenger !",
     selectedContacts: selectedContacts,
   };
 
   const u1 = {
     id: "login",
+    picture: "https://i.pravatar.cc/600"
   };
-
+  
   const u2 = {
     id: "2",
+    picture: "https://i.pravatar.cc/550"
   };
-
+  
   const u3 = {
     id: "3",
+    picture: "https://i.pravatar.cc/650"
   };
 
   return (
