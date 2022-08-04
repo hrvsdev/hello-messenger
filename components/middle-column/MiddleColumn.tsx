@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import Footer from "./footer";
 import Header from "./header";
+import MessageList from "./message-list";
 
 export default function MiddleColumn(): JSX.Element {
   return (
     <MiddleColWrapper>
       <Header />
+      <MessageList/>
       <Footer />
     </MiddleColWrapper>
   );
