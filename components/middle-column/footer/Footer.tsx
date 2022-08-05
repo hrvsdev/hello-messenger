@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { BiSmile, BiImageAlt } from "react-icons/bi";
+import { BiSmile, BiImageAlt, BiSend } from "react-icons/bi";
 
 export default function Footer(): JSX.Element {
   return (
@@ -11,14 +11,18 @@ export default function Footer(): JSX.Element {
             <BiSmile />
           </IconWrapper>
           <InputWrapper>
-            <input type="text" />
+            <input type="text" placeholder="Type a message" spellCheck="false" />
           </InputWrapper>
           <IconWrapper>
             <BiImageAlt />
           </IconWrapper>
         </InputRootWrapper>
       </Left>
-      <Right></Right>
+      <Right>
+        <SendIcon>
+          <BiSend />
+        </SendIcon>
+      </Right>
     </FooterWrapper>
   );
 }
@@ -27,8 +31,12 @@ const FooterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  column-gap: 30px;
+  /* max-width: 700px; */
   flex-shrink: 0;
+  height: 60px;
+  margin-bottom: 20px;
+  padding: 0 20px;
 `;
 
 const Left = styled.div`
@@ -41,9 +49,12 @@ const Left = styled.div`
 const InputRootWrapper = styled.div`
   display: flex;
   align-items: center;
-  background: #ccc;
+  column-gap: 10px;
+  flex-grow: 1;
+  background: #f5f7fb;
   border-radius: 27px;
   height: 54px;
+  padding: 0 15px;
 `;
 
 const IconWrapper = styled.div`
@@ -53,10 +64,11 @@ const IconWrapper = styled.div`
   border-radius: 50%;
   width: 38px;
   height: 38px;
+  color: rgb(112, 117, 121);
 
   svg {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
   }
 `;
 
@@ -65,10 +77,20 @@ const InputWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+
+  input {
+    all: unset;
+    width: 100%;
+  }
 `;
 
 const Right = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const SendIcon = styled.div`
+  width: 54px;
+  height: 54px;
 `;

@@ -8,5 +8,5 @@ export default function MessageList() {
 
 const Messages = styled.div`
     flex-grow: 1;
-    background-color: #eef2ff;
+    /* background-color: #eef2ff; */
 `
