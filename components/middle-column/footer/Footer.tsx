@@ -1,8 +1,15 @@
+import { useRef } from "react";
 import styled from "styled-components";
 
 import { BiSmile, BiImageAlt, BiSend } from "react-icons/bi";
 
 export default function Footer(): JSX.Element {
+  const imageInputRef = useRef<HTMLInputElement>(null);
+
+  const onImageClick = () => {
+    imageInputRef.current?.click();
+  };
+
   return (
     <FooterWrapper>
       <Left>
@@ -13,8 +20,9 @@ export default function Footer(): JSX.Element {
           <InputWrapper>
             <input type="text" placeholder="Type a message" spellCheck="false" />
           </InputWrapper>
-          <IconWrapper>
+          <IconWrapper onClick={onImageClick}>
             <BiImageAlt />
+            <input ref={imageInputRef} type="file" accept="image/*" />
           </IconWrapper>
         </InputRootWrapper>
       </Left>
@@ -31,8 +39,7 @@ const FooterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  column-gap: 30px;
-  /* max-width: 700px; */
+  column-gap: 10px;
   flex-shrink: 0;
   height: 60px;
   margin-bottom: 20px;
@@ -65,10 +72,19 @@ const IconWrapper = styled.div`
   width: 38px;
   height: 38px;
   color: rgb(112, 117, 121);
+  cursor: pointer;
+
+  &:hover {
+    color: #574dfc;
+  }
 
   svg {
     width: 26px;
     height: 26px;
+  }
+
+  input {
+    display: none;
   }
 `;
 
@@ -91,6 +107,17 @@ const Right = styled.div`
 `;
 
 const SendIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 54px;
   height: 54px;
+  border-radius: 50%;
+  background: #f5f7fb;
+
+  svg {
+    width: 26px;
+    height: 26px;
+    color: #574dfc;
+  }
 `;
