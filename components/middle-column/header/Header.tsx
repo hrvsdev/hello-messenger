@@ -33,6 +33,7 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   height: 56px;
   padding: 0 15px;
+  flex-shrink: 0;
   border-bottom: 1px solid #dee0e3;
 `;
 

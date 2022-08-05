@@ -41,8 +41,7 @@ const FooterWrapper = styled.div`
   align-items: center;
   column-gap: 10px;
   flex-shrink: 0;
-  height: 60px;
-  margin-bottom: 20px;
+  height: 90px;
   padding: 0 20px;
 `;
 
@@ -75,7 +74,7 @@ const IconWrapper = styled.div`
   cursor: pointer;
 
   &:hover {
-    color: #574dfc;
+    color: #6366f1;
   }
 
   svg {

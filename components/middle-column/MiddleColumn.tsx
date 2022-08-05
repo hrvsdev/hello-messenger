@@ -7,8 +7,8 @@ export default function MiddleColumn(): JSX.Element {
   return (
     <MiddleColWrapper>
       <Header />
-      <MessageList/>
-      <Footer/>
+      <MessageList />
+      <Footer />
     </MiddleColWrapper>
   );
 }
@@ -16,6 +16,6 @@ export default function MiddleColumn(): JSX.Element {
 const MiddleColWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   flex-grow: 1;
+  height: 100vh;
 `;
