@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export default function MessageList() {
   return (
-    <Messages></Messages>
+    <Messages>Hello Vyas! nice apcc</Messages>
   )
 }
 
