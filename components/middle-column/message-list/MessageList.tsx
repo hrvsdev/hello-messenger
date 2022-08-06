@@ -92,7 +92,7 @@ const MessagesBox = styled.div`
   overflow-y: scroll;
   flex-grow: 1;
   row-gap: 5px;
-  padding: 0 20px;
+  padding: 0 3%;
 
   &::-webkit-scrollbar {
     width: 5px;

@@ -38,7 +38,7 @@ const FooterWrapper = styled.div`
   align-items: center;
   flex-shrink: 0;
   height: 90px;
-  padding: 0 20px;
+  padding: 0 3%;
 `;
 
 const InputRootWrapper = styled.div`
