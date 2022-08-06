@@ -5,6 +5,13 @@ import Message from "../message";
 export default function MessageList() {
   return (
     <MessagesBox>
+      <Message self={true}/>
+      <Message self={false}/>
+      <Message self={true}/>
+      <Message self={true}/>
+      <Message self={false}/>
+      <Message self={false}/>
+      <Message self={true}/>
       <Message self={false}/>
       <Message self={true}/>
     </MessagesBox>

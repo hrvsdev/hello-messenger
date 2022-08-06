@@ -21,12 +21,17 @@ const MessageWrapper = styled.div`
   flex-direction: row;
   column-gap: 10px;
 
-  /* &.other + &.self{
+  &.other ~= &.self{
     background-color: red;
+    /* margin: 8px 0; */
   }
 
-  &.self + &.other{
-    background-color: #00ff04;
+  /* &.other + &.self{
+    
+  } */
+
+  /* &.self + &.other {
+    background-color: red;
   } */
 
   &.self {
