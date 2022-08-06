@@ -6,7 +6,7 @@ export default function Message({ self }: { self: boolean }): JSX.Element {
     <MessageWrapper className={self ? "self" : "other"}>
       <MessageBody self={self}>
         <Linkify>
-          <Content self={self}>The online encyclopedia project</Content>
+          <Content self={self}>The online encyclopedia project 📖</Content>
         </Linkify>
       </MessageBody>
       <Time self={self}>6:52 pm</Time>

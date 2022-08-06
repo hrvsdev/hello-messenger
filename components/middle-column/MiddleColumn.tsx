@@ -18,4 +18,6 @@ const MiddleColWrapper = styled.div`
   flex-direction: column;
   flex-grow: 1;
   height: 100vh;
+  border-left: 1px solid #dee0e3;
+  border-right: 1px solid #dee0e3;
 `;
