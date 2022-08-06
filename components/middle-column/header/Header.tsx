@@ -31,10 +31,12 @@ const HeaderWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 56px;
+  height: 60px;
   padding: 0 15px;
   flex-shrink: 0;
   border-bottom: 1px solid #dee0e3;
+  box-shadow: rgba(114, 114, 114, 0.17) 0px 2px 2px 0px;
+  z-index: 1;
 `;
 
 const Left = styled.div``;

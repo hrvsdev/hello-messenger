@@ -1,50 +1,68 @@
 import styled from "styled-components";
 import Linkify from "react-linkify";
 
-export default function Message({ self }: { self: boolean }): JSX.Element {
+import { MessageType } from "../types";
+
+export default function Message(props: MessageType): JSX.Element {
+  const { content, user, first, last } = props;
+
+  const self = user === "self" ? true : false;
+
   return (
-    <MessageWrapper className={self ? "self" : "other"}>
-      <MessageBody self={self}>
+    <MessageWrapper first={first} last={last} className={self ? "self" : "other"}>
+      <MessageBody self={self} first={first} last={last}>
         <Linkify>
-          <Content self={self}>It is a chat app 💬</Content>
+          <Content self={self}>{content}</Content>
         </Linkify>
       </MessageBody>
-      <Time self={self}>6:52 pm</Time>
+      {/* <Time self={self}>6:52 pm</Time> */}
     </MessageWrapper>
   );
 }
 
-const MessageWrapper = styled.div`
-  width: 100%;
+const MessageWrapper = styled.div<{ first: boolean; last: boolean }>`
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
   column-gap: 10px;
-
+  position: relative;
+  margin-bottom: ${({ last }) => last && "10px"};
   &.self {
     justify-content: flex-start;
     flex-direction: row-reverse;
   }
 `;
 
-const MessageBody = styled.div<{ self: boolean }>`
+const MessageBody = styled.div<{ self: boolean; first: boolean; last: boolean }>`
   display: flex;
   width: fit-content;
-  border-radius: ${({ self }) => (self ? "20px 0 20px 20px" : "0px 20px 20px 20px")};
+  border-radius: ${({ self, first, last }) => {
+    if (self) {
+      if (first && last) return "20px";
+      if (first) return "20px 20px 0 20px";
+      if (last) return "20px 0 20px 20px";
+      else return "20px 0 0 20px";
+    } else {
+      if(first && last) return "20px"
+      if (first) return "20px 20px 20px 0";
+      if (last) return "0 20px 20px 20px";
+      else return "0 20px 20px 0";
+    }
+  }};
   background: ${({ self }) => (self ? "#e0e7ff" : "#f5f7fb")};
 `;
 
 const Content = styled.p<{ self: boolean }>`
   max-width: 300px;
-  padding: 12px 16px;
+  padding: 8px 16px;
   color: ${({ self }) => (self ? "#4338ca" : "black")};
-  
+
   a {
     all: unset;
     cursor: pointer;
     position: relative;
 
-    &::after{
+    &::after {
       position: absolute;
       content: "";
       border-bottom: 1px solid #4338ca;
@@ -53,6 +71,20 @@ const Content = styled.p<{ self: boolean }>`
       bottom: 1px;
     }
   }
+`;
+
+const Reaction = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  bottom: -0px;
+  right: 30px;
+  background: white;
+  border-radius: 50%;
+  font-size: 14px;
 `;
 
 const Time = styled.p<{ self: boolean }>`
