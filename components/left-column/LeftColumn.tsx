@@ -16,7 +16,7 @@ export default function LeftColumn(): JSX.Element {
 
 const LeftColWrapper = styled.div`
   display: flex;
-  width: 400px;
+  width: 500px;
   position: relative;
   flex-direction: column;
   border-right: 1px solid #dee0e3;

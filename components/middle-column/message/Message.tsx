@@ -1,35 +1,39 @@
 import styled from "styled-components";
 
-export function Text(): JSX.Element {
+export default function Message({ self }: { self: boolean }): JSX.Element {
   return (
-    <MessageWrapper self={true}>
-      <Message self={true}>
-        <Content self={true}>Hello, I am Harsh 😆</Content>
-        <Time self={true}>6:52 pm</Time>
-      </Message>
+    <MessageWrapper className={self ? "self" : ""}>
+      <MessageBody self={self}>
+        <Content self={self}>Hello, I am Harsh 😆</Content>
+        <Time self={self}>6:52 pm</Time>
+      </MessageBody>
     </MessageWrapper>
   );
 }
 
-const MessageWrapper = styled.div<{ self: boolean }>`
+const MessageWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-${({ self }) => (self ? "end" : "start")};
+  justify-content: flex-start;
+
+  &.self {
+    justify-content: flex-end;
+  }
 `;
 
-const Message = styled.div<{ self: boolean }>`
+const MessageBody = styled.div<{ self: boolean }>`
   display: flex;
   column-gap: 10px;
   border-radius: 18px;
   width: fit-content;
-  background: ${({ self }) => (self ? "#574dfc" : "#f5f7fb")};
-  `;
+  background: ${({ self }) => (self ? "#e0e7ff" : "#f5f7fb")};
+`;
 
 const Content = styled.p<{ self: boolean }>`
-  padding: 5px 0;
+  padding: 6px 0;
   padding-left: 12px;
-  color: ${({ self }) => (self ? "white" : "black")};
-  `;
+  color: ${({ self }) => (self ? "#4338ca" : "black")};
+`;
 
 const Time = styled.p<{ self: boolean }>`
   padding: 2px 0;
@@ -38,5 +42,7 @@ const Time = styled.p<{ self: boolean }>`
   height: 100%;
   padding-right: 10px;
   font-size: 12px;
-  color: ${({ self }) => (self ? "#ffffffdc" : "#616161")};
+  /* color: #616161; */
+  color: ${({ self }) => (self ? "#6760e3" : "#616161")};
+  /* color: ${({ self }) => (self ? "#ffffffdc" : "#616161")}; */
 `;
