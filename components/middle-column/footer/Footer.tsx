@@ -2,6 +2,7 @@ import { useRef } from "react";
 import styled from "styled-components";
 
 import { BiSmile, BiImageAlt, BiSend } from "react-icons/bi";
+import { FiSend } from "react-icons/fi";
 
 export default function Footer(): JSX.Element {
   const imageInputRef = useRef<HTMLInputElement>(null);
@@ -24,7 +25,7 @@ export default function Footer(): JSX.Element {
           <input ref={imageInputRef} type="file" accept="image/*" />
         </IconWrapper>
         <SendIcon>
-          <BiSend />
+          <FiSend />
         </SendIcon>
       </InputRootWrapper>
     </FooterWrapper>
@@ -94,13 +95,14 @@ const SendIcon = styled.div`
   align-items: center;
   width: 48px;
   height: 30px;
-  padding-left: 10px;
+  padding-left: 8px;
   background: #f5f7fb;
   border-left: 1px solid #ccc;
 
   svg {
-    width: 26px;
-    height: 26px;
+    transform: rotate(10deg);
+    width: 25px;
+    height: 25px;
     color: #574dfc;
   }
 `;
