@@ -6,6 +6,7 @@ export default function MessageList() {
   return (
     <MessagesBox>
       <Message self={false}/>
+      <Message self={true}/>
     </MessagesBox>
   );
 }
