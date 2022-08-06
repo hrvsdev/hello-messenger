@@ -74,6 +74,12 @@ export default function Contact(props: ContactType): JSX.Element {
 
 const ContactRootWrapper = styled.div`
   width: 100%;
+  border-radius: 12px;
+  transition: background 250ms;
+
+  &:hover, &:focus-within {
+    background: #f4f4f4;
+  }
 `;
 
 const ContactWrapper = styled.div`
@@ -85,14 +91,8 @@ const ContactWrapper = styled.div`
   height: 72px;
   padding: 0 10px;
   width: 100%;
-  border-radius: 12px;
-  transition: background 250ms;
   flex-shrink: 0;
   user-select: none;
-
-  &:hover {
-    background: #f4f4f4;
-  }
 `;
 
 const Picture = styled.div<{ selected: boolean }>`

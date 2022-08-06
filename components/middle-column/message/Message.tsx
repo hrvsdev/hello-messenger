@@ -21,19 +21,6 @@ const MessageWrapper = styled.div`
   flex-direction: row;
   column-gap: 10px;
 
-  &.other ~= &.self{
-    background-color: red;
-    /* margin: 8px 0; */
-  }
-
-  /* &.other + &.self{
-    
-  } */
-
-  /* &.self + &.other {
-    background-color: red;
-  } */
-
   &.self {
     justify-content: flex-start;
     flex-direction: row-reverse;
