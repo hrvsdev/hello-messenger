@@ -12,25 +12,21 @@ export default function Footer(): JSX.Element {
 
   return (
     <FooterWrapper>
-      <Left>
-        <InputRootWrapper>
-          <IconWrapper>
-            <BiSmile />
-          </IconWrapper>
-          <InputWrapper>
-            <input type="text" placeholder="Type a message" spellCheck="false" />
-          </InputWrapper>
-          <IconWrapper onClick={onImageClick}>
-            <BiImageAlt />
-            <input ref={imageInputRef} type="file" accept="image/*" />
-          </IconWrapper>
-        </InputRootWrapper>
-      </Left>
-      <Right>
+      <InputRootWrapper>
+        <IconWrapper>
+          <BiSmile />
+        </IconWrapper>
+        <InputWrapper>
+          <input type="text" placeholder="Type a message" spellCheck="false" />
+        </InputWrapper>
+        <IconWrapper onClick={onImageClick}>
+          <BiImageAlt />
+          <input ref={imageInputRef} type="file" accept="image/*" />
+        </IconWrapper>
         <SendIcon>
           <BiSend />
         </SendIcon>
-      </Right>
+      </InputRootWrapper>
     </FooterWrapper>
   );
 }
@@ -39,17 +35,9 @@ const FooterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  column-gap: 10px;
   flex-shrink: 0;
   height: 90px;
   padding: 0 20px;
-`;
-
-const Left = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
 `;
 
 const InputRootWrapper = styled.div`
@@ -99,20 +87,16 @@ const InputWrapper = styled.div`
   }
 `;
 
-const Right = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 const SendIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
+  width: 48px;
+  height: 30px;
+  padding-left: 10px;
   background: #f5f7fb;
+  border-left: 1px solid #ccc;
 
   svg {
     width: 26px;
