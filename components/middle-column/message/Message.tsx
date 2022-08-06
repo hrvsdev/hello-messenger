@@ -6,7 +6,7 @@ export default function Message({ self }: { self: boolean }): JSX.Element {
     <MessageWrapper className={self ? "self" : "other"}>
       <MessageBody self={self}>
         <Linkify>
-          <Content self={self}>The online encyclopedia project 📖</Content>
+          <Content self={self}>It is a chat app 💬</Content>
         </Linkify>
       </MessageBody>
       <Time self={self}>6:52 pm</Time>
@@ -38,6 +38,21 @@ const Content = styled.p<{ self: boolean }>`
   max-width: 300px;
   padding: 12px 16px;
   color: ${({ self }) => (self ? "#4338ca" : "black")};
+  
+  a {
+    all: unset;
+    cursor: pointer;
+    position: relative;
+
+    &::after{
+      position: absolute;
+      content: "";
+      border-bottom: 1px solid #4338ca;
+      width: 100%;
+      right: 0;
+      bottom: 1px;
+    }
+  }
 `;
 
 const Time = styled.p<{ self: boolean }>`
