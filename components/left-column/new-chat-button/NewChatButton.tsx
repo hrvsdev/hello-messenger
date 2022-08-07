@@ -1,4 +1,6 @@
 import { useState } from "@hookstate/core";
+import { motion } from "framer-motion";
+
 import styled from "styled-components";
 import ClickAwayListener from "@mui/base/ClickAwayListener";
 
@@ -15,9 +17,19 @@ export default function NewChatButton(): JSX.Element {
   // Toggle
   const toggle = () => show.set((prev) => !prev);
 
+  // Animations variants
+  const variants = {
+    show: { opacity: 1, scale: 1 },
+    hide: { opacity: 0, scale: 0 },
+  };
+
   return (
     <>
-      <NewChatMenuDialog show={show.value}>
+      <NewChatMenuDialog
+        initial={{ opacity: 0, scale: 0 }}
+        animate={show.value ? "show" : "hide"}
+        variants={variants}
+        show={show.value}>
         <Option>
           <BiUserVoice /> New Channel
         </Option>
@@ -37,7 +49,7 @@ export default function NewChatButton(): JSX.Element {
   );
 }
 
-const NewChatMenuDialog = styled.ul<{ show: boolean }>`
+const NewChatMenuDialog = styled(motion.ul)<{ show: boolean }>`
   position: absolute;
   bottom: 90px;
   right: 25px;
@@ -48,12 +60,7 @@ const NewChatMenuDialog = styled.ul<{ show: boolean }>`
   padding: 8px;
   border-radius: 12px;
   width: 200px;
-  transition: all 200ms cubic-bezier(0.2, 0, 0.2, 1);
   transform-origin: bottom right;
-  will-change: transform opacity;
-  opacity: ${({ show }) => (show ? 1 : 0)};
-  transform: ${({ show }) => (show ? "scale(1)" : "scale(0.4)")};
-  pointer-events: ${({ show }) => (show ? "auto" : "none")};
 `;
 
 const Option = styled.li`
