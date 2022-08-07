@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
+
 import { MenuItem, ControlledMenu } from "@szhsin/react-menu";
 
 import { BiCheckCircle, BiTrashAlt, BiArchive } from "react-icons/bi";
@@ -17,11 +19,7 @@ export default function ContextMenu(props: ContextMenuType): JSX.Element {
   };
 
   return (
-    <Menu
-      {...menuProps}
-      anchorPoint={anchorPoint}
-      onClose={() => toggleMenu(false)}
-    >
+    <Menu {...menuProps} anchorPoint={anchorPoint} onClose={() => toggleMenu(false)}>
       <MenuItem onClick={select}>
         <BiCheckCircle /> Select
       </MenuItem>
