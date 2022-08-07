@@ -25,13 +25,12 @@ const MessageWrapper = styled.div<{ first: boolean; last: boolean }>`
   justify-content: flex-start;
   flex-direction: row;
   column-gap: 10px;
-  position: relative;
   margin-bottom: ${({ last }) => last && "10px"};
   &.self {
     justify-content: flex-start;
     flex-direction: row-reverse;
   }
-`;
+  `;
 
 const MessageBody = styled.div<{ self: boolean; first: boolean; last: boolean }>`
   display: flex;
@@ -39,14 +38,14 @@ const MessageBody = styled.div<{ self: boolean; first: boolean; last: boolean }>
   border-radius: ${({ self, first, last }) => {
     if (self) {
       if (first && last) return "20px";
-      if (first) return "20px 20px 0 20px";
-      if (last) return "20px 0 20px 20px";
-      else return "20px 0 0 20px";
+      if (first) return "20px 20px 3px 20px";
+      if (last) return "20px 3px 20px 20px";
+      else return "20px 3px 3px 20px";
     } else {
       if(first && last) return "20px"
-      if (first) return "20px 20px 20px 0";
-      if (last) return "0 20px 20px 20px";
-      else return "0 20px 20px 0";
+      if (first) return "20px 20px 20px 3px";
+      if (last) return "3px 20px 20px 20px";
+      else return "3px 20px 20px 3px";
     }
   }};
   background: ${({ self }) => (self ? "#e0e7ff" : "#f5f7fb")};
@@ -77,11 +76,7 @@ const Reaction = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  bottom: -0px;
-  right: 30px;
+  position: relative;
   background: white;
   border-radius: 50%;
   font-size: 14px;
