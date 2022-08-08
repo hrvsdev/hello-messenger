@@ -34,6 +34,7 @@ export default function NewChatButton(): JSX.Element {
         initial="hide"
         animate={show.value ? "show" : "hide"}
         transition={{ type: "tween", duration: 0.25 }}
+        style={{originX: 1, originY: 1}}
         variants={menuVariants}>
         <Option>
           <BiUserVoice /> New Channel
@@ -68,7 +69,6 @@ const NewChatMenuDialog = styled(motion.ul)`
   padding: 8px;
   border-radius: 12px;
   width: 200px;
-  transform-origin: bottom right;
 `;
 
 const Option = styled.li`
