@@ -7,17 +7,11 @@ import RightColumn from "../right-column";
 import ContextMenu from "../context-menu";
 
 export default function Home(): JSX.Element {
-  const showMenu = useState(false);
-  const points = useState({x: 0, y: 0})
-
   const onContextMenu = (e: React.MouseEvent) => {
-    const {clientWidth, clientHeight} = e.currentTarget
-    const {clientX, clientY} = e
-    e.preventDefault();
-    console.log({clientWidth, clientHeight})
-    console.log({clientX, clientY})
-    points.set({x: e.clientX, y: e.clientY})
-    showMenu.set((prev) => !prev);
+    showMenu.set(false)
+    console.log({ clientWidth, clientHeight });
+    console.log({ clientX, clientY });
+    setTimeout(()=>showMenu.set(true), 100)
   };
 
   return (
@@ -25,7 +19,7 @@ export default function Home(): JSX.Element {
       <LeftColumn />
       <MiddleColumn />
       <RightColumn />
-      <ContextMenu showMenu={showMenu} points={points.value}/>
+      <ContextMenu showMenu={showMenu} points={points.value} origin={origin.value}/>
     </Main>
   );
 }
