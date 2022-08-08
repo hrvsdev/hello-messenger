@@ -18,18 +18,22 @@ export default function NewChatButton(): JSX.Element {
   const toggle = () => show.set((prev) => !prev);
 
   // Animations variants
-  const variants = {
-    show: { opacity: 1, scale: 1 },
-    hide: { opacity: 0, scale: 0 },
+  const menuVariants = {
+    show: { opacity: 1, scale: 1, transition: { type: "tween", duration: 0.25 } },
+    hide: { opacity: 0, scale: 0.55, transition: {type: "tween", duration: 0.3 } },
+  };
+
+  const buttonVariants = {
+    original: { rotate: 0 },
+    rotate: { rotate: 135 },
   };
 
   return (
     <>
       <NewChatMenuDialog
-        initial={{ opacity: 0, scale: 0 }}
+        initial="hide"
         animate={show.value ? "show" : "hide"}
-        variants={variants}
-        show={show.value}>
+        variants={menuVariants}>
         <Option>
           <BiUserVoice /> New Channel
         </Option>
@@ -41,7 +45,10 @@ export default function NewChatButton(): JSX.Element {
         </Option>
       </NewChatMenuDialog>
       <ClickAwayListener onClickAway={close}>
-        <ButtonWrapper onClick={toggle} show={show.value}>
+        <ButtonWrapper
+          onClick={toggle}
+          animate={show.value ? "rotate" : "original"}
+          variants={buttonVariants}>
           <FiPlus />
         </ButtonWrapper>
       </ClickAwayListener>
@@ -49,7 +56,7 @@ export default function NewChatButton(): JSX.Element {
   );
 }
 
-const NewChatMenuDialog = styled(motion.ul)<{ show: boolean }>`
+const NewChatMenuDialog = styled(motion.ul)`
   position: absolute;
   bottom: 90px;
   right: 25px;
@@ -87,7 +94,7 @@ const Option = styled.li`
   }
 `;
 
-const ButtonWrapper = styled.button<{ show: boolean }>`
+const ButtonWrapper = styled(motion.button)`
   background: #574dfc;
   position: absolute;
   bottom: 25px;
@@ -101,8 +108,6 @@ const ButtonWrapper = styled.button<{ show: boolean }>`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: transform 200ms;
-  transform: ${({ show }) => (show ? "rotate(135deg)" : "rotate(0)")};
 
   svg {
     width: 35px;
