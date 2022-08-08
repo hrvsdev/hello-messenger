@@ -19,8 +19,8 @@ export default function NewChatButton(): JSX.Element {
 
   // Animations variants
   const menuVariants = {
-    show: { opacity: 1, scale: 1, transition: { type: "tween", duration: 0.25 } },
-    hide: { opacity: 0, scale: 0.55, transition: {type: "tween", duration: 0.3 } },
+    show: { opacity: 1, scale: 1 },
+    hide: { opacity: 0, scale: 0.55 },
   };
 
   const buttonVariants = {
@@ -33,6 +33,7 @@ export default function NewChatButton(): JSX.Element {
       <NewChatMenuDialog
         initial="hide"
         animate={show.value ? "show" : "hide"}
+        transition={{ type: "tween", duration: 0.25 }}
         variants={menuVariants}>
         <Option>
           <BiUserVoice /> New Channel
