@@ -5,13 +5,16 @@ import LeftColumn from "../left-column";
 import MiddleColumn from "../middle-column";
 import RightColumn from "../right-column";
 import ContextMenu from "../context-menu";
+import getMenuXandY from "../context-menu/utils/getMenuXandY";
 
 export default function Home(): JSX.Element {
+  const menuState = useState<boolean>(false);
+  const XandY = useState({ points: { x: 0, y: 0 }, origins: { originX: 0, originY: 0 } });
+
   const onContextMenu = (e: React.MouseEvent) => {
-    showMenu.set(false)
-    console.log({ clientWidth, clientHeight });
-    console.log({ clientX, clientY });
-    setTimeout(()=>showMenu.set(true), 100)
+    menuState.set(false);
+    XandY.set(getMenuXandY(e));
+    setTimeout(() => menuState.set(true), 100);
   };
 
   return (
@@ -19,7 +22,7 @@ export default function Home(): JSX.Element {
       <LeftColumn />
       <MiddleColumn />
       <RightColumn />
-      <ContextMenu showMenu={showMenu} points={points.value} origin={origin.value}/>
+      <ContextMenu menuState={menuState} XandY={XandY.get()} />
     </Main>
   );
 }

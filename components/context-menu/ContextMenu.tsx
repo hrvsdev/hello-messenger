@@ -4,53 +4,30 @@ import { AnimatePresence, motion } from "framer-motion";
 import { StateMethods } from "@hookstate/core";
 
 interface props {
-  showMenu: StateMethods<boolean>;
-  points: { x: number; y: number };
-  origin: { x: number; y: number };
+  menuState: StateMethods<boolean>;
+  XandY: {
+    points: {
+      x: number;
+      y: number;
+    };
+    origins: {
+      originX: number;
+      originY: number;
+    };
+  };
 }
 
-export const getMenuXandY = (e: React.MouseEvent, menuState: StateMethods<boolean>) => {
-  menuState.set(false);
-  e.preventDefault();
-
-  let pointX: number = 0;
-  let pointY: number = 0;
-  let originX: number = 0;
-  let originY: number = 0;
-
-  const { clientWidth, clientHeight } = e.currentTarget;
-  const { clientX, clientY } = e;
-  if (clientWidth - clientX > 210) {
-    pointX = clientX;
-    originY = 0;
-  } else {
-    pointX = clientX - 200;
-    originX = 1;
-  }
-  if (clientHeight - clientY > 50) {
-    pointY = clientY;
-    originY = 0;
-  } else {
-    pointY = clientY - 50;
-    pointY = 1;
-  }
-
-  return [{ points: { pointX, pointY } }, { origins: { originX, originY } }];
-};
-
-export default function ContextMenu({ showMenu, points, origin }: props): JSX.Element {
-  const get;
-
+export default function ContextMenu({ menuState, XandY }: props): JSX.Element {
   return (
     <AnimatePresence>
-      {showMenu.value && (
-        <ClickAwayListener onClickAway={() => showMenu.set(false)}>
+      {menuState.value && (
+        <ClickAwayListener onClickAway={() => menuState.set(false)}>
           <MenuWrapper
-            x={points.x}
-            y={points.y}
+            x={XandY.points.x}
+            y={XandY.points.y}
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            style={{ originX: origin.x, originY: origin.y }}
+            style={XandY.origins}
             exit={{ scale: 0.5, opacity: 0 }}>
             ContextMenu
           </MenuWrapper>

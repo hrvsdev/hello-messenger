@@ -80,7 +80,7 @@ export default function MessageList() {
   return (
     <MessagesBox>
       {messages.reverse().map((e) => (
-        <Message key={e.id} {...e} />
+        <Message key={Number(e.id) * Math.random()} {...e} />
       ))}
     </MessagesBox>
   );
