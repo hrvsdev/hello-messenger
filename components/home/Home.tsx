@@ -13,7 +13,7 @@ export default function Home(): JSX.Element {
 
   const onContextMenu = (e: React.MouseEvent) => {
     menuState.set(false);
-    XandY.set(getMenuXandY(e));
+    XandY.set(getMenuXandY(e, 200, 400));
     setTimeout(() => menuState.set(true), 100);
   };
 

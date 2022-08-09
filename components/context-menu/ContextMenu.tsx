@@ -25,6 +25,7 @@ export default function ContextMenu({ menuState, XandY }: props): JSX.Element {
           <MenuWrapper
             x={XandY.points.x}
             y={XandY.points.y}
+            transition={{ scale: { duration: 0.2 }, opacity: { duration: 0.2 } }}
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             style={XandY.origins}
@@ -48,4 +49,5 @@ const MenuWrapper = styled(motion.div)<{ x: number; y: number }>`
   width: 200px;
   top: ${({ y }) => y}px;
   left: ${({ x }) => x}px;
+  height: 400px; ;
 `;
