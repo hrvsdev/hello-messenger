@@ -53,7 +53,7 @@ const MessageWrapper = styled.div<{ first: boolean; last: boolean; self: boolean
   column-gap: 10px;
   margin-bottom: ${({ last }) => last && "10px"};
   flex-direction: ${({ self }) => (self ? "row-reverse" : "row")};
-  padding: 2px 0;
+  padding: 2px calc(2% - 5px) 2px 2%;
   transition: background-color 300ms;
   
   &:focus-within{

@@ -91,7 +91,13 @@ const MessagesBox = styled.div`
   flex-direction: column-reverse;
   overflow-y: scroll;
   flex-grow: 1;
+  row-gap: 3px;
 
+  // Firefox scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: #f9f5f5 transparent;
+
+  // Webkit scrollbar
   &::-webkit-scrollbar {
     width: 5px;
   }
