@@ -91,7 +91,6 @@ const MessagesBox = styled.div`
   flex-direction: column-reverse;
   overflow-y: scroll;
   flex-grow: 1;
-  row-gap: 3px;
 
   // Firefox scrollbar
   scrollbar-width: thin;
