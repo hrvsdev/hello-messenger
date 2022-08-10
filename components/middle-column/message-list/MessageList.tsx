@@ -91,9 +91,6 @@ const MessagesBox = styled.div`
   flex-direction: column-reverse;
   overflow-y: scroll;
   flex-grow: 1;
-  row-gap: 3px;
-  padding: 20px 3% 0;
-  padding-right: calc(3% - 5px);
 
   &::-webkit-scrollbar {
     width: 5px;

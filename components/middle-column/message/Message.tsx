@@ -1,36 +1,65 @@
 import styled from "styled-components";
 import Linkify from "react-linkify";
 
+import { useMenuState } from "@szhsin/react-menu";
+import { useState } from "@hookstate/core";
+
+import ContextMenu from "../context-menu";
+
 import { MessageType } from "../types";
 
 export default function Message(props: MessageType): JSX.Element {
-  const { content, user, first, last } = props;
+  // Props
+  const { content, user, first, last, id } = props;
 
+  // Checking if user is self
   const self = user === "self" ? true : false;
 
+  // Context menu hook
+  const [menuProps, toggleMenu] = useMenuState();
+
+  // Anchor point state
+  const anchorPoint = useState({ x: 0, y: 0 });
+
+  // Context menu action
+  const onContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    anchorPoint.set({ x: e.clientX, y: e.clientY });
+    toggleMenu(true)
+  };
+
+  // Context menu props
+  const contextMenuProps = {
+    id: id,
+    menuProps: menuProps,
+    anchorPoint: anchorPoint.get(),
+    toggleMenu: toggleMenu,
+  };
+
   return (
-    <MessageWrapper first={first} last={last} className={self ? "self" : "other"}>
+    <MessageWrapper first={first} last={last} self={self} onContextMenu={onContextMenu}>
+      <ContextMenu {...contextMenuProps} />
       <MessageBody self={self} first={first} last={last}>
         <Linkify>
           <Content self={self}>{content}</Content>
         </Linkify>
       </MessageBody>
-      {/* <Time self={self}>6:52 pm</Time> */}
     </MessageWrapper>
   );
 }
 
-const MessageWrapper = styled.div<{ first: boolean; last: boolean }>`
+const MessageWrapper = styled.div<{ first: boolean; last: boolean; self: boolean }>`
   display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
   column-gap: 10px;
   margin-bottom: ${({ last }) => last && "10px"};
-  &.self {
-    justify-content: flex-start;
-    flex-direction: row-reverse;
+  flex-direction: ${({ self }) => (self ? "row-reverse" : "row")};
+  padding: 2px 0;
+  transition: background-color 300ms;
+  
+  &:focus-within{
+    background-color: hsl(0, 0%, 98%);
   }
-  `;
+`;
 
 const MessageBody = styled.div<{ self: boolean; first: boolean; last: boolean }>`
   display: flex;
@@ -42,7 +71,7 @@ const MessageBody = styled.div<{ self: boolean; first: boolean; last: boolean }>
       if (last) return "20px 3px 20px 20px";
       else return "20px 3px 3px 20px";
     } else {
-      if(first && last) return "20px"
+      if (first && last) return "20px";
       if (first) return "20px 20px 20px 3px";
       if (last) return "3px 20px 20px 20px";
       else return "3px 20px 20px 3px";

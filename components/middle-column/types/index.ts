@@ -1,5 +1,3 @@
-import { State } from "@hookstate/core";
-
 export interface MessageType {
     id: string | number,
     content: string,
@@ -10,10 +8,9 @@ export interface MessageType {
 
 
 export interface ContextMenuType {
-    id: string;
+    id: string | number;
     anchorPoint: { x: number; y: number };
     toggleMenu: Function;
     menuProps: any;
-    selectedContacts: State<string[]>;
   }
   

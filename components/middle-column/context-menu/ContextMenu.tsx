@@ -11,16 +11,11 @@ import { addOrRemove } from "../../../utils";
 
 export default function ContextMenu(props: ContextMenuType): JSX.Element {
   const { anchorPoint, toggleMenu, menuProps } = props;
-  const { id, selectedContacts } = props;
-
-  // Select button action
-  const select = () => {
-    selectedContacts.set((prev) => addOrRemove(prev, id));
-  };
+  const { id } = props;
 
   return (
     <Menu {...menuProps} anchorPoint={anchorPoint} onClose={() => toggleMenu(false)}>
-      <MenuItem onClick={select}>
+      <MenuItem>
         <BiCheckCircle /> Select
       </MenuItem>
       <MenuItem>
