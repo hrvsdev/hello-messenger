@@ -8,7 +8,7 @@ import Link from "next/link";
 import { BiCheck } from "react-icons/bi";
 
 import { ContactType } from "../types";
-import { addOrRemove } from "../utils";
+import { addOrRemove } from "../../../utils";
 
 import ContextMenu from "../context-menu";
 
