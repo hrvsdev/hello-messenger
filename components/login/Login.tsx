@@ -5,6 +5,8 @@ import { FaUser } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { BiEnvelope } from "react-icons/bi";
 
+import { signInWithGoogle } from "../../firebase/auth";
+
 export default function Login() {
   // Input state
   const email = useState<string>("");
@@ -28,7 +30,7 @@ export default function Login() {
           <FaUser />
           <Text>Continue as Guest</Text>
         </GuestWrapper>
-        <GoogleWrapper>
+        <GoogleWrapper onClick={signInWithGoogle}>
           <FcGoogle />
           <Text>Continue with Google</Text>
         </GoogleWrapper>
