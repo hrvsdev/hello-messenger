@@ -1,5 +1,7 @@
 export interface addUserType {
-  name: string;
-  email: string;
-  picture: string;
+  uid: string;
+  id: string,
+  name: string | null;
+  email: string | null;
+  picture: string | null;
 }

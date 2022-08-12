@@ -1,6 +1,7 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 import app from "./config";
+import { addUser, getUser } from "./db";
 
 const auth = getAuth(app);
 
@@ -8,8 +9,21 @@ const googleProvider = new GoogleAuthProvider();
 
 const signInWithGoogle = async () => {
   try {
-    const user = await signInWithPopup(auth, googleProvider);
-    console.log(user.user);
+    const res = await signInWithPopup(auth, googleProvider);
+    const user = res.user;
+    const { uid, displayName, email, photoURL } = user;
+
+    const u = await getUser(uid);
+    console.log(u);
+    if (!u) {
+      await addUser({
+        id: uid,
+        uid: uid,
+        name: displayName,
+        email: email,
+        picture: photoURL,
+      });
+    }
   } catch (err) {
     console.log(err);
   }
