@@ -1,4 +1,5 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, sendSignInLinkToEmail } from "firebase/auth";
 
 import app from "./config";
 import { setUser } from "./db";
@@ -27,4 +28,17 @@ const signInWithGoogle = async () => {
   }
 };
 
-export { auth, signInWithGoogle };
+// Sending link to email for signing in
+const signInWithEmail = async (email: string) => {
+  try {
+    await sendSignInLinkToEmail(auth, email, {
+      url: "http://localhost:3000/login/email-sent",
+      handleCodeInApp: true,
+    });
+    window.localStorage.setItem("signInEmail", email);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { auth, signInWithGoogle, signInWithEmail };
