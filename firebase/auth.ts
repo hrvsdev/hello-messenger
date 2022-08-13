@@ -15,6 +15,7 @@ const signInWithGoogle = async () => {
 
     const u = await getUser(uid);
     console.log(u);
+
     if (!u) {
       await addUser({
         uid: uid,
