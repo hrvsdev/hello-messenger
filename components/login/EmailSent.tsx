@@ -1,9 +1,21 @@
 import styled from "styled-components";
 import Link from "next/link";
 
+import { useEffect } from "react";
+
 import { BiEnvelope } from "react-icons/bi";
+import { useState } from "@hookstate/core";
 
 export default function EmailSent() {
+  // Email state
+  const email = useState<string | null>("user@hello.com");
+
+  // Getting email on render
+  useEffect(() => {
+    console.log("1")
+    email.set(window.localStorage.getItem("signInEmail"));
+  });
+
   return (
     <Main>
       <LoginWrapper>
@@ -16,7 +28,7 @@ export default function EmailSent() {
         <EmailWrapper>
           <div className="email">
             <BiEnvelope />
-            <p>username@email.com</p>
+            <p>{email.value}</p>
           </div>
         </EmailWrapper>
         <WrongEmailWrapper>
@@ -125,8 +137,8 @@ const WrongEmailWrapper = styled.div`
   text-align: center;
   font-size: 15px;
   a {
-      font-weight: 500;
+    font-weight: 500;
     color: #4f46e5;
-    text-decoration: none
+    text-decoration: none;
   }
 `;
