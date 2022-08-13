@@ -1,5 +1,5 @@
-import { addDoc, collection, getFirestore } from "firebase/firestore";
-import { query, where, doc, getDoc } from "firebase/firestore";
+import { collection, getFirestore } from "firebase/firestore";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 import { addUserType } from "./types";
 import app from "./config";
 
@@ -12,7 +12,8 @@ const usersRef = collection(db, "users");
 // Add user function
 const addUser = async (data: addUserType) => {
   try {
-    await addDoc(usersRef, data);
+    const userRef = doc(db, "users", data.uid);
+    const user = await setDoc(userRef, data);
   } catch (err) {
     console.log(err);
   }
