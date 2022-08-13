@@ -1,21 +1,34 @@
-import { useState } from "@hookstate/core";
 import styled from "styled-components";
+
+import { useState } from "@hookstate/core";
+import { useRouter } from "next/router";
 
 import { FaUser } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { BiEnvelope } from "react-icons/bi";
 
-import { signInWithGoogle } from "../../firebase/auth";
+import { signInWithEmail, signInWithGoogle } from "../../firebase/auth";
 
 export default function Login() {
+  // Router hook
+  const router = useRouter();
+
   // Input state
   const email = useState<string>("");
 
   // Input error state
   const emailError = useState<boolean>(false);
 
+  // Email input change
   const onEmailInput = (e: React.FormEvent<HTMLInputElement>) => {
     email.set(e.currentTarget.value);
+  };
+
+  // On next button click
+  const onEmailClick = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    await signInWithEmail(email.value);
+    router.push("/login/email-sent");
   };
 
   return (
@@ -43,14 +56,14 @@ export default function Login() {
           <InputWrapper>
             <BiEnvelope />
             <Input
-            error={emailError.value}
+              error={emailError.value}
               type="email"
               placeholder="Enter email"
               onChange={onEmailInput}
             />
           </InputWrapper>
           <Error show={emailError.value}>Invalid email</Error>
-          <Next>Next</Next>
+          <Next onClick={onEmailClick}>Next</Next>
         </EmailWrapper>
       </LoginWrapper>
     </Main>
