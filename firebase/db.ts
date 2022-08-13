@@ -9,11 +9,11 @@ const db = getFirestore(app);
 // Users collection
 const usersRef = collection(db, "users");
 
-// Add user function
-const addUser = async (data: addUserType) => {
+// Checking if user exits and  adding data to database
+const setUser = async (data: addUserType) => {
   try {
     const userRef = doc(db, "users", data.uid);
-    const user = await setDoc(userRef, data);
+    await setDoc(userRef, data);
   } catch (err) {
     console.log(err);
   }
@@ -30,4 +30,4 @@ const getUser = async (uid: string) => {
   }
 };
 
-export { db, addUser, getUser };
+export { db, setUser, getUser };
