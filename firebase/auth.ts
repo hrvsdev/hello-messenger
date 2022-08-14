@@ -30,14 +30,18 @@ const signInWithGoogle = async () => {
 
 // Sending link to email for signing in
 const signInWithEmail = async (email: string) => {
+  const actionCodeSettings = {
+    url: "https://localhost:3000/login/email-sent",
+    handleCodeInApp: true,
+  };
+
   try {
-    await sendSignInLinkToEmail(auth, email, {
-      url: "http://localhost:3000/login/email-sent",
-      handleCodeInApp: true,
-    });
+    console.log(email)
+    await sendSignInLinkToEmail(auth, email, actionCodeSettings);
     window.localStorage.setItem("signInEmail", email);
   } catch (err) {
     console.log(err);
+    alert(err.message)
   }
 };
 
