@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import { BiEnvelope } from "react-icons/bi";
@@ -8,11 +9,16 @@ import { useState } from "@hookstate/core";
 
 export default function EmailSent() {
   // Email state
-  const email = useState<string | null>("user@hello.com");
+  const email = useState<string>("user@hello.com");
+
+  // Router hook
+  const router = useRouter();
 
   // Getting email on render
   useEffect(() => {
-    email.set(window.localStorage.getItem("signInEmail"));
+    const signInEmail = window.localStorage.getItem("signInEmail");
+    if (signInEmail) email.set(signInEmail);
+    else router.push("/login");
   });
 
   return (
