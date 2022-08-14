@@ -1,5 +1,6 @@
-import { getAuth, signInWithPopup } from "firebase/auth";
+import { Auth, getAuth, signInWithPopup } from "firebase/auth";
 import { GoogleAuthProvider, sendSignInLinkToEmail } from "firebase/auth";
+import { AuthError } from "firebase/auth";
 
 import app from "./config";
 import { setUser } from "./db";
@@ -36,12 +37,12 @@ const signInWithEmail = async (email: string) => {
   };
 
   try {
-    console.log(email)
+    console.log(email);
     await sendSignInLinkToEmail(auth, email, actionCodeSettings);
     window.localStorage.setItem("signInEmail", email);
-  } catch (err) {
-    console.log(err);
-    alert(err.message)
+  } catch (error: any) {
+    const err: AuthError = error;
+    alert(err.message);
   }
 };
 
