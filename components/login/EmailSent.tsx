@@ -12,7 +12,6 @@ export default function EmailSent() {
 
   // Getting email on render
   useEffect(() => {
-    console.log("1")
     email.set(window.localStorage.getItem("signInEmail"));
   });
 
