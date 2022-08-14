@@ -32,7 +32,7 @@ const signInWithGoogle = async () => {
 // Sending link to email for signing in
 const signInWithEmail = async (email: string) => {
   const actionCodeSettings = {
-    url: "https://localhost:3000/login/email-sent",
+    url: "https://hello-msgr.vercel.app/login/email-sent",
     handleCodeInApp: true,
   };
 
