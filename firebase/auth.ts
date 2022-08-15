@@ -46,4 +46,9 @@ const signInWithEmail = async (email: string) => {
   }
 };
 
+// Confirming sign in email link
+const confirmEmailSignIn = async ()=>{
+  
+}
+
 export { auth, signInWithGoogle, signInWithEmail };
