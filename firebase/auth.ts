@@ -55,7 +55,8 @@ const confirmEmailSignIn = async (url: string) => {
       if (email) {
         await signInWithEmailLink(auth, email, url);
         window.localStorage.removeItem("signInEmail");
-      } else throw { message: "Please login on same device" };
+      } 
+      // else throw { message: "Please login on same device" };
     }
   } catch (error: any) {
     const err: AuthError = error;
@@ -63,4 +64,4 @@ const confirmEmailSignIn = async (url: string) => {
   }
 };
 
-export { auth, signInWithGoogle, signInWithEmail };
+export { auth, signInWithGoogle, signInWithEmail, confirmEmailSignIn };
