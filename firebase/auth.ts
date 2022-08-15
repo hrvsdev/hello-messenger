@@ -1,5 +1,6 @@
-import { Auth, getAuth, signInWithPopup } from "firebase/auth";
-import { GoogleAuthProvider, sendSignInLinkToEmail } from "firebase/auth";
+import { getAuth } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth";
 import { AuthError } from "firebase/auth";
 
 import app from "./config";
@@ -47,8 +48,19 @@ const signInWithEmail = async (email: string) => {
 };
 
 // Confirming sign in email link
-const confirmEmailSignIn = async ()=>{
-  
-}
+const confirmEmailSignIn = async (url: string) => {
+  try {
+    if (isSignInWithEmailLink(auth, url)) {
+      let email = window.localStorage.getItem("signInEmail");
+      if (email) {
+        await signInWithEmailLink(auth, email, url);
+        window.localStorage.removeItem("signInEmail");
+      } else throw { message: "Please login on same device" };
+    }
+  } catch (error: any) {
+    const err: AuthError = error;
+    alert(err.message);
+  }
+};
 
 export { auth, signInWithGoogle, signInWithEmail };
