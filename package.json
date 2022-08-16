@@ -2,6 +2,7 @@
   "name": "hello-messenger",
   "description": "Hello is a realtime messenger built with Next.js and Firebase",
   "author": "https://github.com/hrvsdev",
+  "repository": "https://github.com/hrvsdev/hello-messenger",
   "version": "0.1.0",
   "private": true,
   "scripts": {
