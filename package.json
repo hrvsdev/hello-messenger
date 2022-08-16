@@ -1,5 +1,6 @@
 {
   "name": "hello-messenger",
+  "description": "Hello is a realtime messenger built with Next.js and Firebase",
   "version": "0.1.0",
   "private": true,
   "scripts": {
